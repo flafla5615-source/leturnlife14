@@ -65,6 +65,14 @@ button {
   backdrop-filter: blur(16px);
 }
 
+.branch-card-active {
+  border-color: rgba(232, 200, 120, 0.76);
+  background:
+    linear-gradient(180deg, rgba(232, 200, 120, 0.12), rgba(255, 255, 255, 0.035)),
+    rgba(17, 19, 24, 0.86);
+  box-shadow: 0 18px 70px rgba(214, 180, 106, 0.2);
+}
+
 .form-input {
   width: 100%;
   border-radius: 1rem;

@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   ArrowRight,
   BadgeCheck,
@@ -18,21 +18,44 @@ import {
   WalletCards,
 } from "lucide-react";
 
-const branches = [
+const branchGroups = [
   {
-    id: "oldgym-jinju-sacheon",
-    name: "진주·사천 올드짐",
+    id: "oldgym",
+    brand: "올드짐",
+    title: "진주·사천·거제 올드짐",
     description: "올드짐 참여 지점 혜택 확인",
+    priceText: "헬스 월 3만원대",
+    note: "지점별 가격 및 혜택은 상이할 수 있습니다.",
+    branches: ["평거점", "하대점", "사천점", "상동점", "아주점", "수월점"],
   },
   {
-    id: "urbangym-jinju",
-    name: "진주 어반짐",
-    description: "어반짐 참여 지점 혜택 확인",
-  },
-  {
-    id: "musclefactory-jinju",
+    id: "musclefactory24",
+    brand: "머슬팩토리24",
     name: "진주 머슬팩토리24",
+    title: "진주·사천·삼천포·고성 머슬팩토리24",
     description: "머슬팩토리24 참여 지점 혜택 확인",
+    priceText: "헬스 월 3만원대",
+    note: "지점별 가격 및 혜택은 상이할 수 있습니다.",
+    branches: [
+      "보건대점",
+      "호탄점",
+      "신진주점",
+      "하대점",
+      "정촌점",
+      "사천본점",
+      "삼천포벌리점",
+      "사천터미널점",
+      "고성점",
+    ],
+  },
+  {
+    id: "urbangym",
+    brand: "어반짐",
+    title: "진주 어반짐",
+    description: "어반짐 참여 지점 혜택 확인",
+    priceText: "헬스 월 3만원대",
+    note: "지점별 가격 및 혜택은 상이할 수 있습니다.",
+    branches: ["진주평거점"],
   },
 ];
 
@@ -49,13 +72,13 @@ const benefits = [
   },
   {
     icon: Gift,
-    title: "리뷰 작성 시 SPT 2회 제공",
+    title: "리뷰 작성 시 SPT(서비스 PT) 2회 제공",
     description: "서비스 PT 혜택",
   },
   {
     icon: MapPin,
-    title: "진주·사천 전지점 참여",
-    description: "가까운 지점 선택 가능",
+    title: "참여 지점 확대",
+    description: "진주·사천·거제·삼천포·고성",
   },
 ];
 
@@ -76,7 +99,8 @@ const faqs = [
   },
   {
     question: "어느 지점이 참여하나요?",
-    answer: "진주·사천 지역의 올드짐, 어반짐, 머슬팩토리24 전지점이 참여합니다.",
+    answer:
+      "진주·사천·거제 올드짐, 진주·사천·삼천포·고성 머슬팩토리24, 진주 어반짐 참여 지점이 함께합니다.",
   },
 ];
 
@@ -167,8 +191,8 @@ function HeroSection() {
           </h1>
 
           <p className="keep-words mt-6 max-w-xl text-lg leading-8 text-zinc-300 md:text-xl">
-            진주·사천 전지점 참여. 올드짐 · 어반짐 · 머슬팩토리24에서
-            가까운 지점의 14주년 혜택을 확인하세요.
+            올드짐 · 머슬팩토리24 · 어반짐 참여 지점 혜택.
+            진주 · 사천 · 거제 · 삼천포 · 고성 혜택 적용.
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -204,7 +228,7 @@ function HeroSection() {
               </p>
             </div>
             <div className="mt-8 grid grid-cols-2 gap-3">
-              {["올드짐", "어반짐", "머슬팩토리24", "가격 상이"].map(
+              {["올드짐", "머슬팩토리24", "어반짐", "참여 지점 혜택"].map(
                 (item) => (
                   <div
                     key={item}
@@ -262,7 +286,7 @@ function BenefitsSection() {
         <SectionHeading
           kicker="Special Benefits"
           title="14주년 고객감사제 혜택"
-          description="1년에 딱 한 번, 단 2주간 진행되는 혜택을 가까운 지점에서 확인하세요."
+          description="진주·사천·거제·삼천포·고성 참여 지점 혜택을 가까운 브랜드에서 확인하세요."
         />
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -297,30 +321,49 @@ function BenefitsSection() {
   );
 }
 
-function BranchSection() {
+function BranchSection({ onInquiry }) {
+  const [activeGroup, setActiveGroup] = useState(branchGroups[0].id);
+  const selectedGroup =
+    branchGroups.find((group) => group.id === activeGroup) ?? branchGroups[0];
+
   return (
     <section className="py-20 md:py-28">
       <div className="section-shell">
         <SectionHeading
           kicker="Branches"
-          title="진주 / 사천 참여 브랜드"
-          description="원하는 브랜드와 지역 혜택을 선택해보세요."
+          title="참여 브랜드 / 지점 선택"
+          description="브랜드 카드를 눌러 이번 14주년 고객감사제 참여 지점을 확인해보세요."
         />
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {branches.map((branch) => (
+          {branchGroups.map((group) => {
+            const isActive = activeGroup === group.id;
+            const firstBranch = `${group.brand} ${group.branches[0]}`;
+
+            return (
             <article
-              key={branch.id}
-              className="glass-card flex min-h-[210px] flex-col rounded-[24px] p-5 transition duration-300 hover:-translate-y-1 hover:border-softgold/60"
+              key={group.id}
+              role="button"
+              tabIndex={0}
+              onClick={() => setActiveGroup(group.id)}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault();
+                  setActiveGroup(group.id);
+                }
+              }}
+              className={`glass-card flex min-h-[240px] flex-col rounded-[24px] p-5 text-left transition duration-300 hover:-translate-y-1 ${
+                isActive ? "branch-card-active" : ""
+              }`}
             >
               <div className="mb-6 flex items-start justify-between gap-4">
                 <div>
-                  <p className="text-sm font-bold text-champagne">참여 브랜드</p>
+                  <p className="text-sm font-bold text-champagne">{group.brand}</p>
                   <h3 className="keep-words mt-2 text-2xl font-black text-white">
-                    {branch.name}
+                    {group.title}
                   </h3>
                   <p className="mt-3 text-sm font-semibold leading-6 text-zinc-400">
-                    {branch.description}
+                    {group.description}
                   </p>
                 </div>
                 <Building2 className="h-6 w-6 shrink-0 text-champagne" />
@@ -328,11 +371,14 @@ function BranchSection() {
 
               <div className="mt-auto flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <span className="rounded-full border border-champagne/30 bg-champagne/10 px-3 py-1 text-sm font-bold text-pearl">
-                  헬스 월 3만원대
+                  {group.priceText}
                 </span>
                 <button
                   type="button"
-                  onClick={scrollToLeadForm}
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    onInquiry(firstBranch);
+                  }}
                   className="inline-flex items-center gap-1 rounded-full border border-champagne/45 px-4 py-2 text-sm font-extrabold text-champagne transition hover:bg-champagne hover:text-black"
                 >
                   문의하기
@@ -340,7 +386,35 @@ function BranchSection() {
                 </button>
               </div>
             </article>
-          ))}
+            );
+          })}
+        </div>
+
+        <div className="glass-card mt-5 rounded-[24px] p-5 md:p-6">
+          <div className="mb-5 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="text-sm font-bold text-champagne">참여 지점</p>
+              <h3 className="keep-words mt-2 text-2xl font-black text-white">
+                {selectedGroup.title}
+              </h3>
+              <p className="mt-3 text-sm font-semibold leading-6 text-zinc-400">
+                아래 지점들이 이번 14주년 고객감사제에 참여합니다.
+              </p>
+            </div>
+            <p className="text-sm font-bold text-pearl">{selectedGroup.note}</p>
+          </div>
+
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4">
+            {selectedGroup.branches.map((branchName) => (
+              <div
+                key={`${selectedGroup.id}-${branchName}`}
+                className="flex min-h-11 items-center gap-2 rounded-2xl border border-white/10 bg-black/35 px-3 py-2 text-sm font-bold text-pearl"
+              >
+                <CheckCircle2 className="h-4 w-4 shrink-0 text-champagne" />
+                <span>{branchName}</span>
+              </div>
+            ))}
+          </div>
         </div>
 
         <p className="mt-6 text-center text-sm font-semibold text-zinc-400">
@@ -352,14 +426,24 @@ function BranchSection() {
   );
 }
 
-function LeadFormSection() {
+function LeadFormSection({ selectedBranch }) {
   const [form, setForm] = useState(initialFormState);
   const [errors, setErrors] = useState({});
 
   const branchOptions = useMemo(
-    () => branches.map((branch) => branch.name),
+    () =>
+      branchGroups.flatMap((group) =>
+        group.branches.map((branchName) => `${group.brand} ${branchName}`)
+      ),
     []
   );
+
+  useEffect(() => {
+    if (!selectedBranch) return;
+
+    setForm((current) => ({ ...current, branch: selectedBranch }));
+    setErrors((current) => ({ ...current, branch: "" }));
+  }, [selectedBranch]);
 
   function updateField(event) {
     const { name, value } = event.target;
@@ -413,7 +497,7 @@ function LeadFormSection() {
             {[
               ["1년에 딱 한 번, 단 2주간", Trophy],
               ["헬스 월 3만원대 이벤트", WalletCards],
-              ["리뷰 작성 시 SPT 2회 제공", Gift],
+              ["리뷰 작성 시 SPT(서비스 PT) 2회 제공", Gift],
             ].map(([text, Icon]) => (
               <div key={text} className="flex items-center gap-3 text-pearl">
                 <span className="grid h-9 w-9 place-items-center rounded-full bg-champagne/10">
@@ -534,7 +618,7 @@ function StickyCTA() {
             헬스 월 3만원대!
           </p>
           <p className="keep-words text-xs font-semibold text-zinc-400">
-            1년에 딱 한 번, 단 2주간
+            진주·사천·거제·삼천포·고성 혜택
           </p>
         </div>
         <button
@@ -550,13 +634,20 @@ function StickyCTA() {
 }
 
 function App() {
+  const [selectedBranch, setSelectedBranch] = useState("");
+
+  function handleBranchInquiry(branchName = "") {
+    setSelectedBranch(branchName);
+    scrollToLeadForm();
+  }
+
   return (
     <main className="min-h-screen bg-ink text-white">
       <HeroSection />
       <BrandSection />
       <BenefitsSection />
-      <BranchSection />
-      <LeadFormSection />
+      <BranchSection onInquiry={handleBranchInquiry} />
+      <LeadFormSection selectedBranch={selectedBranch} />
       <FAQSection />
       <StickyCTA />
     </main>
