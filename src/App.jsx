@@ -19,17 +19,27 @@ import {
 } from "lucide-react";
 
 const branches = [
-  { id: "oldgym-jinju", brand: "올드짐", location: "진주 지점" },
-  { id: "urbangym-jinju", brand: "어반짐", location: "진주 지점" },
-  { id: "musclefactory-jinju", brand: "머슬팩토리24", location: "진주 지점" },
-  { id: "oldgym-sacheon", brand: "올드짐", location: "사천 지점" },
-  { id: "musclefactory-sacheon", brand: "머슬팩토리24", location: "사천 지점" },
+  {
+    id: "oldgym-jinju-sacheon",
+    name: "진주·사천 올드짐",
+    description: "올드짐 참여 지점 혜택 확인",
+  },
+  {
+    id: "urbangym-jinju",
+    name: "진주 어반짐",
+    description: "어반짐 참여 지점 혜택 확인",
+  },
+  {
+    id: "musclefactory-jinju",
+    name: "진주 머슬팩토리24",
+    description: "머슬팩토리24 참여 지점 혜택 확인",
+  },
 ];
 
 const benefits = [
   {
     icon: WalletCards,
-    title: "월 3만원대",
+    title: "헬스 월 3만원대",
     description: "합리적인 가격 혜택",
   },
   {
@@ -152,8 +162,8 @@ function HeroSection() {
           </div>
 
           <h1 className="keep-words text-4xl font-black leading-[1.08] text-white sm:text-5xl md:text-6xl xl:text-7xl">
-            올해 가장 큰 혜택
-            <span className="mt-2 block gold-text">월 3만원대 이벤트</span>
+            1년에 딱 한 번, 단 2주간
+            <span className="mt-2 block gold-text">헬스 월 3만원대 이벤트</span>
           </h1>
 
           <p className="keep-words mt-6 max-w-xl text-lg leading-8 text-zinc-300 md:text-xl">
@@ -182,9 +192,12 @@ function HeroSection() {
               ANNIVERSARY BENEFIT
             </p>
             <div className="mt-10">
-              <p className="text-lg font-bold text-zinc-300">핵심 혜택</p>
+              <p className="keep-words text-xl font-black text-zinc-100 md:text-2xl">
+                1년에 딱 한 번, 단 2주간
+              </p>
               <p className="mt-3 text-6xl font-black tracking-normal gold-text md:text-7xl">
-                3만원대
+                <span className="block text-4xl md:text-5xl">헬스 월</span>
+                <span className="block">3만원대</span>
               </p>
               <p className="mt-4 text-base leading-7 text-zinc-300">
                 리뷰 작성 고객에게 SPT(서비스 PT) 2회 제공
@@ -249,7 +262,7 @@ function BenefitsSection() {
         <SectionHeading
           kicker="Special Benefits"
           title="14주년 고객감사제 혜택"
-          description="올해 중 가장 큰 혜택을 가까운 지점에서 확인하세요."
+          description="1년에 딱 한 번, 단 2주간 진행되는 혜택을 가까운 지점에서 확인하세요."
         />
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -277,6 +290,7 @@ function BenefitsSection() {
 
         <p className="mt-6 text-center text-sm font-semibold text-zinc-400">
           지점별 가격 및 혜택은 상이할 수 있습니다.
+          <span className="mt-2 block">정확한 가격과 혜택은 상담 시 안내됩니다.</span>
         </p>
       </div>
     </section>
@@ -289,8 +303,8 @@ function BranchSection() {
       <div className="section-shell">
         <SectionHeading
           kicker="Branches"
-          title="진주 / 사천 전지점"
-          description="원하는 브랜드와 가까운 지점을 선택해보세요."
+          title="진주 / 사천 참여 브랜드"
+          description="원하는 브랜드와 지역 혜택을 선택해보세요."
         />
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -301,17 +315,20 @@ function BranchSection() {
             >
               <div className="mb-6 flex items-start justify-between gap-4">
                 <div>
-                  <p className="text-sm font-bold text-champagne">{branch.brand}</p>
-                  <h3 className="mt-2 text-2xl font-black text-white">
-                    {branch.location}
+                  <p className="text-sm font-bold text-champagne">참여 브랜드</p>
+                  <h3 className="keep-words mt-2 text-2xl font-black text-white">
+                    {branch.name}
                   </h3>
+                  <p className="mt-3 text-sm font-semibold leading-6 text-zinc-400">
+                    {branch.description}
+                  </p>
                 </div>
                 <Building2 className="h-6 w-6 shrink-0 text-champagne" />
               </div>
 
-              <div className="mt-auto flex items-center justify-between gap-3">
+              <div className="mt-auto flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <span className="rounded-full border border-champagne/30 bg-champagne/10 px-3 py-1 text-sm font-bold text-pearl">
-                  가격 상이
+                  헬스 월 3만원대
                 </span>
                 <button
                   type="button"
@@ -325,6 +342,11 @@ function BranchSection() {
             </article>
           ))}
         </div>
+
+        <p className="mt-6 text-center text-sm font-semibold text-zinc-400">
+          지점별 가격 및 혜택은 상이할 수 있습니다.
+          <span className="mt-2 block">정확한 가격과 혜택은 상담 시 안내됩니다.</span>
+        </p>
       </div>
     </section>
   );
@@ -335,7 +357,7 @@ function LeadFormSection() {
   const [errors, setErrors] = useState({});
 
   const branchOptions = useMemo(
-    () => branches.map((branch) => `${branch.brand} ${branch.location}`),
+    () => branches.map((branch) => branch.name),
     []
   );
 
@@ -389,8 +411,8 @@ function LeadFormSection() {
 
           <div className="mt-8 space-y-4">
             {[
-              ["올해 가장 큰 혜택", Trophy],
-              ["월 3만원대 이벤트", WalletCards],
+              ["1년에 딱 한 번, 단 2주간", Trophy],
+              ["헬스 월 3만원대 이벤트", WalletCards],
               ["리뷰 작성 시 SPT 2회 제공", Gift],
             ].map(([text, Icon]) => (
               <div key={text} className="flex items-center gap-3 text-pearl">
@@ -508,10 +530,12 @@ function StickyCTA() {
     <div className="fixed inset-x-0 bottom-0 z-50 border-t border-champagne/25 bg-black/85 px-4 py-3 backdrop-blur-xl md:hidden">
       <div className="mx-auto flex max-w-md items-center gap-3">
         <div className="min-w-0 flex-1">
-          <p className="truncate text-sm font-black text-white">
-            올해 가장 큰 혜택, 월 3만원대!
+          <p className="keep-words text-sm font-black leading-tight text-white">
+            헬스 월 3만원대!
           </p>
-          <p className="text-xs font-semibold text-zinc-400">진주·사천 전지점 참여</p>
+          <p className="keep-words text-xs font-semibold text-zinc-400">
+            1년에 딱 한 번, 단 2주간
+          </p>
         </div>
         <button
           type="button"
