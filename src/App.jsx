@@ -18,6 +18,21 @@ import {
   WalletCards,
 } from "lucide-react";
 
+const assetUrl = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, "")}`;
+
+const images = {
+  hero: assetUrl("/assets/hero-gym.jpg"),
+  oldgym: assetUrl("/assets/oldgym.jpg"),
+  urbangym: assetUrl("/assets/urbangym.jpg"),
+  musclefactory24: assetUrl("/assets/musclefactory24.jpg"),
+  benefitPt: assetUrl("/assets/benefit-pt.jpg"),
+  reviewSpt: assetUrl("/assets/review-spt.jpg"),
+  branchOldgym: assetUrl("/assets/branch-oldgym.jpg"),
+  branchMusclefactory: assetUrl("/assets/branch-musclefactory.jpg"),
+  branchUrbangym: assetUrl("/assets/branch-urbangym.jpg"),
+  footer: assetUrl("/assets/footer-gym.jpg"),
+};
+
 const branchGroups = [
   {
     id: "oldgym",
@@ -26,6 +41,7 @@ const branchGroups = [
     description: "올드짐 참여 지점 혜택 확인",
     priceText: "헬스 월 3만원대",
     note: "지점별 가격 및 혜택은 상이할 수 있습니다.",
+    image: images.branchOldgym,
     branches: ["평거점", "하대점", "사천점", "상동점", "아주점", "수월점"],
   },
   {
@@ -36,6 +52,7 @@ const branchGroups = [
     description: "머슬팩토리24 참여 지점 혜택 확인",
     priceText: "헬스 월 3만원대",
     note: "지점별 가격 및 혜택은 상이할 수 있습니다.",
+    image: images.branchMusclefactory,
     branches: [
       "보건대점",
       "호탄점",
@@ -55,6 +72,7 @@ const branchGroups = [
     description: "어반짐 참여 지점 혜택 확인",
     priceText: "헬스 월 3만원대",
     note: "지점별 가격 및 혜택은 상이할 수 있습니다.",
+    image: images.branchUrbangym,
     branches: ["진주평거점"],
   },
 ];
@@ -64,6 +82,7 @@ const benefits = [
     icon: WalletCards,
     title: "헬스 월 3만원대",
     description: "합리적인 가격 혜택",
+    image: images.benefitPt,
   },
   {
     icon: BadgeCheck,
@@ -74,18 +93,58 @@ const benefits = [
     icon: Gift,
     title: "리뷰 작성 시 SPT(서비스 PT) 2회 제공",
     description: "서비스 PT 혜택",
+    image: images.reviewSpt,
   },
   {
     icon: MapPin,
     title: "참여 지점 확대",
     description: "진주·사천·거제·삼천포·고성",
+    image: images.branchOldgym,
   },
 ];
 
 const brandCards = [
-  { english: "OLD GYM", korean: "올드짐", line: "클래식한 트레이닝 감도" },
-  { english: "URBAN GYM", korean: "어반짐", line: "도심형 프리미엄 피트니스" },
-  { english: "MUSCLE FACTORY 24", korean: "머슬팩토리24", line: "24시간 운동 루틴" },
+  {
+    english: "OLD GYM",
+    korean: "올드짐",
+    line: "클래식한 트레이닝 감도",
+    image: images.oldgym,
+  },
+  {
+    english: "URBAN GYM",
+    korean: "어반짐",
+    line: "도심형 프리미엄 피트니스",
+    image: images.urbangym,
+  },
+  {
+    english: "MUSCLE FACTORY 24",
+    korean: "머슬팩토리24",
+    line: "24시간 운동 루틴",
+    image: images.musclefactory24,
+  },
+];
+
+const galleryImages = [
+  {
+    src: assetUrl("/assets/gallery-1.jpg"),
+    title: "프리미엄 웨이트존",
+    description: "집중도 높은 운동 환경",
+  },
+  {
+    src: assetUrl("/assets/gallery-2.jpg"),
+    title: "쾌적한 유산소존",
+    description: "누구나 편하게 시작하는 헬스",
+  },
+  {
+    src: assetUrl("/assets/gallery-3.jpg"),
+    title: "전문적인 PT 공간",
+    description: "SPT 혜택으로 경험하는 맞춤 케어",
+  },
+  {
+    src: assetUrl("/assets/gallery-4.jpg"),
+    title: "참여 지점 혜택",
+    description: "가까운 지점에서 상담 가능",
+  },
 ];
 
 const faqs = [
@@ -132,6 +191,35 @@ function SectionHeading({ kicker, title, description }) {
           {description}
         </p>
       ) : null}
+    </div>
+  );
+}
+
+function ImageCard({
+  src,
+  alt,
+  children,
+  className = "",
+  imageClassName = "",
+  loading = "lazy",
+}) {
+  return (
+    <div
+      className={`relative overflow-hidden rounded-[24px] border border-champagne/25 bg-[radial-gradient(circle_at_top_left,rgba(214,180,106,0.18),transparent_34%),linear-gradient(135deg,#111318,#050505)] ${className}`}
+    >
+      {src ? (
+        <img
+          src={src}
+          alt={alt}
+          loading={loading}
+          className={`absolute inset-0 h-full w-full object-cover opacity-80 ${imageClassName}`}
+          onError={(event) => {
+            event.currentTarget.style.display = "none";
+          }}
+        />
+      ) : null}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/88 via-black/45 to-black/10" />
+      <div className="relative z-10 h-full">{children}</div>
     </div>
   );
 }
@@ -208,7 +296,12 @@ function HeroSection() {
 
         <div className="relative mx-auto w-full max-w-[430px]">
           <div className="absolute inset-6 rounded-full bg-champagne/20 blur-3xl" />
-          <div className="glass-card relative overflow-hidden rounded-[28px] p-6 md:p-8">
+          <ImageCard
+            src={images.hero}
+            alt="리턴라이프컴퍼니 14주년 고객감사제 헬스장 이미지"
+            loading="eager"
+            className="h-[560px] rounded-[28px] p-6 shadow-gold md:p-8"
+          >
             <div className="absolute right-4 top-2 text-[9rem] font-black leading-none text-white/[0.04]">
               14
             </div>
@@ -239,7 +332,7 @@ function HeroSection() {
                 )
               )}
             </div>
-          </div>
+          </ImageCard>
         </div>
       </div>
     </header>
@@ -260,9 +353,20 @@ function BrandSection() {
           {brandCards.map((brand) => (
             <article
               key={brand.english}
-              className="glass-card group rounded-[24px] p-6 transition duration-300 hover:-translate-y-1 hover:border-softgold/60 hover:bg-white/[0.07]"
+              className="glass-card group overflow-hidden rounded-[24px] p-4 transition duration-300 hover:-translate-y-1 hover:border-softgold/60 hover:bg-white/[0.07]"
             >
-              <div className="mb-7 flex items-center justify-between">
+              <ImageCard
+                src={brand.image}
+                alt={`${brand.korean} 브랜드 대표 이미지`}
+                className="mb-5 aspect-[4/3] rounded-[20px]"
+              >
+                <div className="flex h-full items-end p-4">
+                  <p className="text-sm font-black tracking-[0.18em] text-champagne">
+                    {brand.english}
+                  </p>
+                </div>
+              </ImageCard>
+              <div className="mb-5 flex items-center justify-between">
                 <div className="h-px w-14 bg-gradient-to-r from-champagne to-transparent" />
                 <Dumbbell className="h-5 w-5 text-champagne opacity-80" />
               </div>
@@ -298,6 +402,19 @@ function BenefitsSection() {
                 key={benefit.title}
                 className="glass-card rounded-[24px] p-5 transition duration-300 hover:-translate-y-1 hover:border-champagne/60"
               >
+                {benefit.image ? (
+                  <ImageCard
+                    src={benefit.image}
+                    alt={`${benefit.title} 혜택 이미지`}
+                    className="mb-5 aspect-[16/10] rounded-[18px]"
+                  >
+                    <div className="flex h-full items-end p-3">
+                      <span className="rounded-full border border-champagne/30 bg-black/45 px-3 py-1 text-xs font-black text-champagne">
+                        14th Benefit
+                      </span>
+                    </div>
+                  </ImageCard>
+                ) : null}
                 <div className="mb-5 grid h-12 w-12 place-items-center rounded-2xl bg-champagne/10 text-champagne">
                   <Icon className="h-6 w-6" />
                 </div>
@@ -316,6 +433,38 @@ function BenefitsSection() {
           지점별 가격 및 혜택은 상이할 수 있습니다.
           <span className="mt-2 block">정확한 가격과 혜택은 상담 시 안내됩니다.</span>
         </p>
+      </div>
+    </section>
+  );
+}
+
+function GallerySection() {
+  return (
+    <section className="py-20 md:py-28">
+      <div className="section-shell">
+        <SectionHeading
+          kicker="Premium Space"
+          title="리턴라이프컴퍼니가 운영하는 프리미엄 피트니스 공간"
+          description="올드짐 · 머슬팩토리24 · 어반짐의 실제 공간과 혜택을 한눈에 확인해보세요."
+        />
+
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {galleryImages.map((item) => (
+            <ImageCard
+              key={item.title}
+              src={item.src}
+              alt={`${item.title} 이미지`}
+              className="aspect-[4/5] rounded-[24px] transition duration-300 hover:-translate-y-1 hover:border-softgold/60 hover:shadow-gold-soft"
+            >
+              <div className="flex h-full flex-col justify-end p-5">
+                <p className="keep-words text-xl font-black text-white">{item.title}</p>
+                <p className="keep-words mt-2 text-sm font-semibold leading-6 text-zinc-300">
+                  {item.description}
+                </p>
+              </div>
+            </ImageCard>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -356,6 +505,20 @@ function BranchSection({ onInquiry }) {
                 isActive ? "branch-card-active" : ""
               }`}
             >
+              <ImageCard
+                src={group.image}
+                alt={`${group.title} 참여 지점 이미지`}
+                className="mb-5 aspect-[16/10] rounded-[20px]"
+              >
+                <div className="flex h-full items-end justify-between gap-3 p-4">
+                  <span className="rounded-full border border-champagne/30 bg-black/45 px-3 py-1 text-xs font-black text-champagne">
+                    참여 지점
+                  </span>
+                  <span className="text-xs font-bold text-pearl">
+                    {group.branches.length}개 지점
+                  </span>
+                </div>
+              </ImageCard>
               <div className="mb-6 flex items-start justify-between gap-4">
                 <div>
                   <p className="text-sm font-bold text-champagne">{group.brand}</p>
@@ -492,6 +655,24 @@ function LeadFormSection({ selectedBranch }) {
           <p className="mt-5 text-base leading-7 text-zinc-300 md:text-lg">
             간단한 정보 입력 후 가까운 지점의 14주년 혜택을 안내받아보세요.
           </p>
+
+          <ImageCard
+            src={images.footer || images.benefitPt}
+            alt="14주년 혜택 상담 이미지"
+            className="mt-8 aspect-[16/10] rounded-[24px] md:aspect-[4/3]"
+          >
+            <div className="flex h-full flex-col justify-end p-5">
+              <p className="text-sm font-black tracking-[0.18em] text-champagne">
+                CONSULTATION
+              </p>
+              <h3 className="keep-words mt-2 text-2xl font-black text-white">
+                14주년 혜택 상담
+              </h3>
+              <p className="keep-words mt-2 text-sm font-semibold leading-6 text-zinc-300">
+                가까운 지점의 실제 혜택을 안내받아보세요.
+              </p>
+            </div>
+          </ImageCard>
 
           <div className="mt-8 space-y-4">
             {[
@@ -646,6 +827,7 @@ function App() {
       <HeroSection />
       <BrandSection />
       <BenefitsSection />
+      <GallerySection />
       <BranchSection onInquiry={handleBranchInquiry} />
       <LeadFormSection selectedBranch={selectedBranch} />
       <FAQSection />
