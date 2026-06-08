@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color: #ffffff;
+  background: #050505;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  margin: 0;
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(214, 180, 106, 0.12), transparent 34rem),
+    linear-gradient(180deg, #050505 0%, #0b0d10 48%, #050505 100%);
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+::selection {
+  color: #050505;
+  background: #e8c878;
+}
+
+.gold-text {
+  background: linear-gradient(135deg, #fff3bf 0%, #e8c878 44%, #b88a3a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.keep-words {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+.glass-card {
+  border: 1px solid rgba(214, 180, 106, 0.28);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.025)),
+    rgba(17, 19, 24, 0.78);
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.34);
+  backdrop-filter: blur(16px);
+}
+
+.form-input {
+  width: 100%;
+  border-radius: 1rem;
+  border: 1px solid rgba(214, 180, 106, 0.26);
+  background: rgba(5, 5, 5, 0.58);
+  color: #ffffff;
+  outline: none;
+  padding: 0.95rem 1rem;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background 180ms ease;
+}
+
+.form-input::placeholder {
+  color: rgba(245, 241, 232, 0.45);
+}
+
+.form-input:focus {
+  border-color: rgba(232, 200, 120, 0.9);
+  background: rgba(5, 5, 5, 0.76);
+  box-shadow: 0 0 0 3px rgba(214, 180, 106, 0.16);
+}
+
+.form-input option {
+  background: #0b0d10;
+  color: #ffffff;
+}
+
+.section-shell {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .section-shell {
+    width: min(1120px, calc(100% - 56px));
+  }
+}
