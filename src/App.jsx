@@ -191,7 +191,7 @@ function HeroSection() {
               </p>
             </div>
             <div className="mt-8 grid grid-cols-2 gap-3">
-              {["진주 전지점", "사천 전지점", "올드짐", "어반짐", "머슬팩토리24", "가격 상이"].map(
+              {["올드짐", "어반짐", "머슬팩토리24", "가격 상이"].map(
                 (item) => (
                   <div
                     key={item}
