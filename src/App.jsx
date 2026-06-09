@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useState } from "react";
 import {
   ArrowRight,
   BadgeCheck,
@@ -140,10 +140,8 @@ const faqs = [
   },
 ];
 
-const initialFormState = { name: "", phone: "", branch: "", message: "" };
-
-function scrollToLeadForm() {
-  document.getElementById("lead-form")?.scrollIntoView({ behavior: "smooth", block: "start" });
+function scrollToBranches() {
+  document.getElementById("branches")?.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 function SectionHeading({ kicker, title, description }) {
@@ -273,7 +271,7 @@ function HeroSection() {
             진주 · 사천 · 거제 · 삼천포 · 고성 혜택 적용.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <GoldButton onClick={scrollToLeadForm} className="w-full sm:w-auto">
+            <GoldButton onClick={scrollToBranches} className="w-full sm:w-auto">
               가까운 지점 혜택 확인하기
             </GoldButton>
             <p className="flex items-center justify-center gap-2 text-sm font-semibold text-zinc-300 sm:justify-start">
@@ -454,12 +452,12 @@ function GallerySection() {
   );
 }
 
-function BranchSection({ onInquiry }) {
+function BranchSection() {
   const [activeGroup, setActiveGroup] = useState(branchGroups[0].id);
   const selectedGroup = branchGroups.find((g) => g.id === activeGroup) ?? branchGroups[0];
 
   return (
-    <section className="py-20 md:py-28">
+    <section id="branches" className="py-20 md:py-28">
       <div className="section-shell">
         <SectionHeading
           kicker="Branches"
@@ -500,13 +498,13 @@ function BranchSection({ onInquiry }) {
                   <span className="rounded-full border border-champagne/30 bg-champagne/10 px-3 py-1 text-sm font-bold text-pearl">
                     {group.priceText}
                   </span>
-                  <button
-                    type="button"
-                    onClick={(e) => { e.stopPropagation(); onInquiry(firstBranch); }}
+                  <a
+                    href="tel:010-0000-0000"
+                    onClick={(e) => e.stopPropagation()}
                     className="inline-flex items-center gap-1 rounded-full border border-champagne/45 px-4 py-2 text-sm font-extrabold text-champagne transition hover:bg-champagne hover:text-black"
                   >
-                    문의하기 <ChevronRight className="h-4 w-4" />
-                  </button>
+                    지점 문의 <ChevronRight className="h-4 w-4" />
+                  </a>
                 </div>
               </article>
             );
@@ -546,141 +544,6 @@ function BranchSection({ onInquiry }) {
   );
 }
 
-function LeadFormSection({ selectedBranch }) {
-  const [form, setForm] = useState(initialFormState);
-  const [errors, setErrors] = useState({});
-
-  const branchOptions = useMemo(
-    () => branchGroups.flatMap((g) => g.branches.map((b) => `${g.brand} ${b}`)),
-    []
-  );
-
-  useEffect(() => {
-    if (!selectedBranch) return;
-    setForm((c) => ({ ...c, branch: selectedBranch }));
-    setErrors((c) => ({ ...c, branch: "" }));
-  }, [selectedBranch]);
-
-  function updateField(e) {
-    const { name, value } = e.target;
-    setForm((c) => ({ ...c, [name]: value }));
-    setErrors((c) => ({ ...c, [name]: "" }));
-  }
-
-  function validateForm() {
-    const next = {};
-    if (!form.name.trim()) next.name = "이름을 입력해주세요.";
-    if (!form.phone.trim()) next.phone = "연락처를 입력해주세요.";
-    if (!form.branch) next.branch = "관심 지점을 선택해주세요.";
-    setErrors(next);
-    return Object.keys(next).length === 0;
-  }
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    if (!validateForm()) return;
-    console.log("상담 신청", { ...form, submittedAt: new Date().toISOString(), campaign: "returnlife-14th-anniversary" });
-    alert("상담 신청이 접수되었습니다. 입력하신 내용을 확인했습니다.");
-    setForm(initialFormState);
-  }
-
-  return (
-    <section id="lead-form" className="scroll-mt-8 bg-graphite/60 py-20 md:py-28">
-      <div className="section-shell grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-
-        {/* 왼쪽: 실제 헬스장 사진 + 혜택 요약 */}
-        <div>
-          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.22em] text-champagne">Consultation</p>
-          <h2 className="keep-words text-3xl font-black leading-tight text-white md:text-5xl">
-            상담 신청하고
-            <span className="block gold-text">혜택 받기</span>
-          </h2>
-          <p className="mt-5 text-base leading-7 text-zinc-300 md:text-lg">
-            가까운 지점의 실제 혜택을 안내받아보세요.
-          </p>
-
-          {/* 실제 사진 — 모바일에서는 숨김 */}
-          <div className="relative mt-8 hidden overflow-hidden rounded-[24px] border border-[#D6B46A]/30 lg:block">
-            <img
-              src={images.consultation}
-              alt="리턴라이프컴퍼니 피트니스 공간"
-              loading="lazy"
-              className="h-[220px] w-full object-cover object-center"
-              onError={(e) => { e.currentTarget.style.display = "none"; }}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-            <div className="absolute inset-0 flex items-end p-5">
-              <p className="text-sm font-black tracking-[0.18em] text-champagne">PREMIUM FITNESS</p>
-            </div>
-          </div>
-
-          {/* 혜택 요약 카드 */}
-          <div className="mt-6 glass-card rounded-[24px] border border-champagne/30 p-5">
-            <p className="mb-4 text-xs font-bold uppercase tracking-[0.22em] text-champagne">14주년 특별 혜택</p>
-            <div className="space-y-4">
-              {[
-                ["1년에 딱 한 번, 단 2주간", Trophy],
-                ["헬스 월 3만원대 이벤트", WalletCards],
-                ["리뷰 작성 시 SPT(서비스 PT) 2회 제공", Gift],
-              ].map(([text, Icon]) => (
-                <div key={text} className="flex items-center gap-3 text-pearl">
-                  <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-champagne/10">
-                    <Icon className="h-4 w-4 text-champagne" />
-                  </span>
-                  <span className="font-bold">{text}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-          <p className="mt-5 flex items-start gap-2 text-sm font-semibold text-zinc-400">
-            <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-champagne" />
-            진주·사천·거제·삼천포·고성 참여 지점 혜택 적용
-          </p>
-        </div>
-
-        {/* 오른쪽: 상담 신청 폼 */}
-        <form onSubmit={handleSubmit} className="glass-card rounded-[28px] p-5 md:p-7" noValidate>
-          <div className="grid gap-4 sm:grid-cols-2">
-            <FormField label="이름" error={errors.name}>
-              <input name="name" value={form.name} onChange={updateField} placeholder="홍길동" className="form-input" />
-            </FormField>
-            <FormField label="연락처" error={errors.phone}>
-              <input name="phone" value={form.phone} onChange={updateField} placeholder="010-0000-0000" className="form-input" />
-            </FormField>
-            <FormField label="관심 지점 선택" error={errors.branch} className="sm:col-span-2">
-              <select name="branch" value={form.branch} onChange={updateField} className="form-input">
-                <option value="">관심 지점을 선택해주세요</option>
-                {branchOptions.map((o) => <option key={o} value={o}>{o}</option>)}
-              </select>
-            </FormField>
-            <FormField label="문의 내용 또는 희망 상담 시간" className="sm:col-span-2">
-              <textarea
-                name="message" value={form.message} onChange={updateField}
-                placeholder="예: 평일 저녁 상담 희망 / 가장 가까운 지점 안내 요청"
-                rows="4" className="form-input resize-none"
-              />
-            </FormField>
-          </div>
-          <GoldButton type="submit" className="mt-6 w-full">혜택 받고 상담 신청하기</GoldButton>
-          <p className="mt-4 flex items-start gap-2 text-sm leading-6 text-zinc-400">
-            <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-champagne" />
-            입력하신 정보는 상담 목적 외 사용되지 않습니다.
-          </p>
-        </form>
-      </div>
-    </section>
-  );
-}
-
-function FormField({ label, error, children, className = "" }) {
-  return (
-    <label className={`block ${className}`}>
-      <span className="mb-2 block text-sm font-bold text-pearl">{label}</span>
-      {children}
-      {error && <span className="mt-2 block text-sm text-softgold">{error}</span>}
-    </label>
-  );
-}
 
 function FAQSection() {
   return (
@@ -713,10 +576,10 @@ function StickyCTA() {
         </div>
         <button
           type="button"
-          onClick={scrollToLeadForm}
+          onClick={scrollToBranches}
           className="shrink-0 rounded-full bg-gold-gradient px-4 py-3 text-sm font-black text-black shadow-gold-soft"
         >
-          지금 혜택 확인
+          지점 확인
         </button>
       </div>
     </div>
@@ -724,21 +587,13 @@ function StickyCTA() {
 }
 
 function App() {
-  const [selectedBranch, setSelectedBranch] = useState("");
-
-  function handleBranchInquiry(branchName = "") {
-    setSelectedBranch(branchName);
-    scrollToLeadForm();
-  }
-
   return (
     <main className="min-h-screen bg-ink text-white">
       <HeroSection />
       <BrandSection />
       <BenefitsSection />
       {SHOW_GALLERY && <GallerySection />}
-      <BranchSection onInquiry={handleBranchInquiry} />
-      <LeadFormSection selectedBranch={selectedBranch} />
+      <BranchSection />
       <FAQSection />
       <StickyCTA />
     </main>
