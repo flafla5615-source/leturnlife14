@@ -6,6 +6,7 @@ import {
   CheckCircle2,
   ChevronRight,
   Dumbbell,
+  ExternalLink,
   Gift,
   MapPin,
   MessageCircle,
@@ -16,6 +17,11 @@ import {
 } from "lucide-react";
 
 const assetUrl = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, "")}`;
+
+// ──────────────────────────────────────────────────────────
+// 네이버폼 링크 — 폼 생성 후 아래 URL을 교체하세요
+// ──────────────────────────────────────────────────────────
+const NAVER_FORM_URL = "#"; // TODO: 네이버폼 링크 입력 필요
 
 const images = {
   hero: assetUrl("/assets/hero-gym.jpg"),
@@ -28,7 +34,6 @@ const images = {
   gallery1: assetUrl("/assets/04_open_gym_floor_view.png"),
   gallery2: assetUrl("/assets/02_cardio_stairmaster_zone.png"),
   gallery3: assetUrl("/assets/01_weight_zone_machine_area.png"),
-  consultation: assetUrl("/assets/consultation-bg.jpg"),
 };
 
 // 갤러리 섹션 토글 — 실제 지점 사진이 있으므로 활성화
@@ -144,6 +149,10 @@ function scrollToBranches() {
   document.getElementById("branches")?.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
+function scrollToConsult() {
+  document.getElementById("consult")?.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
 function SectionHeading({ kicker, title, description }) {
   return (
     <div className="mx-auto mb-8 max-w-2xl text-center md:mb-12">
@@ -158,7 +167,6 @@ function SectionHeading({ kicker, title, description }) {
 
 /**
  * ImageCard — 실제 사진을 dark overlay + gold border 카드로 감쌈.
- * overlayClassName으로 overlay 강도 조절 가능.
  */
 function ImageCard({
   src,
@@ -467,7 +475,6 @@ function BranchSection() {
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {branchGroups.map((group) => {
             const isActive = activeGroup === group.id;
-            const firstBranch = `${group.brand} ${group.branches[0]}`;
             return (
               <article
                 key={group.id}
@@ -498,13 +505,14 @@ function BranchSection() {
                   <span className="rounded-full border border-champagne/30 bg-champagne/10 px-3 py-1 text-sm font-bold text-pearl">
                     {group.priceText}
                   </span>
-                  <a
-                    href="tel:010-0000-0000"
-                    onClick={(e) => e.stopPropagation()}
+                  {/* 상담 신청 섹션으로 스크롤 */}
+                  <button
+                    type="button"
+                    onClick={(e) => { e.stopPropagation(); scrollToConsult(); }}
                     className="inline-flex items-center gap-1 rounded-full border border-champagne/45 px-4 py-2 text-sm font-extrabold text-champagne transition hover:bg-champagne hover:text-black"
                   >
-                    지점 문의 <ChevronRight className="h-4 w-4" />
-                  </a>
+                    상담 신청 <ChevronRight className="h-4 w-4" />
+                  </button>
                 </div>
               </article>
             );
@@ -544,10 +552,9 @@ function BranchSection() {
   );
 }
 
-
 function FAQSection() {
   return (
-    <section className="pb-28 pt-20 md:pb-32 md:pt-28">
+    <section className="py-20 md:py-28">
       <div className="section-shell">
         <SectionHeading kicker="FAQ" title="자주 묻는 질문" />
         <div className="mx-auto grid max-w-4xl gap-4">
@@ -566,21 +573,125 @@ function FAQSection() {
   );
 }
 
+/**
+ * ConsultSection — 네이버폼 연결 상담 신청 CTA 섹션
+ * 자체 폼 없이 네이버폼으로 유도하는 전환 중심 구조
+ */
+function ConsultSection() {
+  const highlights = [
+    { label: "헬스 월 3만원대", sub: "14주년 한정 특별가" },
+    { label: "리뷰 작성 시 SPT 2회", sub: "서비스 PT 무료 제공" },
+    { label: "참여 지점 혜택 안내", sub: "지점별 정확한 혜택 상담" },
+  ];
+
+  return (
+    <section id="consult" className="bg-graphite/50 pb-32 pt-20 md:pb-40 md:pt-28">
+      <div className="section-shell">
+        <SectionHeading
+          kicker="Consultation"
+          title="14주년 혜택 상담 신청하기"
+          description="이름, 연락처, 희망 지점만 남기면 가까운 지점의 14주년 고객감사제 혜택을 안내해드립니다."
+        />
+
+        <div className="mx-auto max-w-2xl">
+          {/* 혜택 요약 카드 3종 */}
+          <div className="mb-8 grid gap-3 sm:grid-cols-3">
+            {highlights.map((h) => (
+              <div
+                key={h.label}
+                className="glass-card rounded-[20px] p-4 text-center"
+              >
+                <p className="gold-text text-lg font-black leading-tight">{h.label}</p>
+                <p className="mt-1 text-xs font-semibold text-zinc-400">{h.sub}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* 메인 CTA 카드 */}
+          <div className="glass-card relative overflow-hidden rounded-[28px] p-8 md:p-10">
+            {/* 배경 glow */}
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-champagne/[0.06] to-transparent" />
+            <div className="pointer-events-none absolute right-4 top-2 select-none text-[12rem] font-black leading-none text-champagne/[0.04]">
+              14
+            </div>
+
+            <div className="relative z-10">
+              {/* 강조 배지 */}
+              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-champagne/35 bg-champagne/10 px-4 py-2 text-sm font-bold text-pearl">
+                <Trophy className="h-4 w-4 text-softgold" />
+                리턴라이프컴퍼니 14주년 고객감사제
+              </div>
+
+              {/* 핵심 강조 문구 */}
+              <p className="keep-words text-3xl font-black text-white md:text-4xl">
+                1년에 딱 한 번,{" "}
+                <span className="gold-text">단 2주간</span>
+              </p>
+              <p className="keep-words mt-2 text-5xl font-black md:text-6xl">
+                <span className="gold-text">헬스 월 3만원대</span>
+              </p>
+
+              {/* 안내 문구 */}
+              <p className="mt-5 text-base leading-7 text-zinc-300">
+                네이버폼에서 이름, 연락처, 상담 희망 지점을 남겨주시면{" "}
+                <br className="hidden sm:block" />
+                가까운 지점 담당자가 빠르게 안내해드립니다.
+              </p>
+
+              {/* CTA 버튼 */}
+              <div className="mt-8">
+                <a
+                  href={NAVER_FORM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={NAVER_FORM_URL === "#" ? (e) => { e.preventDefault(); alert("네이버폼 링크를 NAVER_FORM_URL 변수에 입력해주세요."); } : undefined}
+                  className="group inline-flex w-full items-center justify-center gap-3 rounded-2xl bg-gold-gradient px-6 py-5 text-lg font-extrabold text-black shadow-gold transition duration-300 hover:-translate-y-0.5 hover:shadow-gold-soft sm:w-auto sm:px-10"
+                >
+                  <ExternalLink className="h-5 w-5" />
+                  네이버폼으로 상담 신청하기
+                  <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+                </a>
+              </div>
+
+              {/* 보조 안내 */}
+              <div className="mt-5 flex flex-col gap-1.5">
+                <p className="flex items-center gap-2 text-sm font-semibold text-zinc-400">
+                  <ExternalLink className="h-3.5 w-3.5 shrink-0 text-champagne/70" />
+                  클릭 시 네이버 상담 신청폼으로 이동합니다.
+                </p>
+                <p className="flex items-center gap-2 text-sm font-semibold text-zinc-400">
+                  <ShieldCheck className="h-3.5 w-3.5 shrink-0 text-champagne/70" />
+                  입력하신 정보는 상담 목적 외 사용되지 않습니다.
+                </p>
+                <p className="flex items-center gap-2 text-xs text-zinc-500">
+                  지점별 가격 및 혜택은 상이할 수 있으며, 정확한 내용은 상담 시 안내됩니다.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function StickyCTA() {
   return (
     <div className="fixed inset-x-0 bottom-0 z-50 border-t border-champagne/25 bg-black/85 px-4 py-3 backdrop-blur-xl md:hidden">
       <div className="mx-auto flex max-w-md items-center gap-3">
         <div className="min-w-0 flex-1">
-          <p className="keep-words text-sm font-black leading-tight text-white">헬스 월 3만원대!</p>
-          <p className="keep-words text-xs font-semibold text-zinc-400">진주·사천·거제·삼천포·고성 혜택</p>
+          <p className="keep-words text-sm font-black leading-tight text-white">14주년 혜택 상담</p>
+          <p className="keep-words text-xs font-semibold text-zinc-400">네이버폼으로 빠르게 신청하기</p>
         </div>
-        <button
-          type="button"
-          onClick={scrollToBranches}
+        <a
+          href={NAVER_FORM_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={NAVER_FORM_URL === "#" ? (e) => { e.preventDefault(); scrollToConsult(); } : undefined}
           className="shrink-0 rounded-full bg-gold-gradient px-4 py-3 text-sm font-black text-black shadow-gold-soft"
         >
-          지점 확인
-        </button>
+          상담 신청
+        </a>
       </div>
     </div>
   );
@@ -595,6 +706,7 @@ function App() {
       {SHOW_GALLERY && <GallerySection />}
       <BranchSection />
       <FAQSection />
+      <ConsultSection />
       <StickyCTA />
     </main>
   );
