@@ -25,74 +25,74 @@ const images = {
   oldgym: assetUrl("/assets/oldgym-facility.jpg"),
   musclefactory: assetUrl("/assets/musclefactory-facility.jpg"),
   urbangym: assetUrl("/assets/urbangym-facility.jpg"),
-  gallery1: assetUrl("/assets/gallery-1.jpg"),
-  gallery2: assetUrl("/assets/gallery-2.jpg"),
-  gallery3: assetUrl("/assets/gallery-3.jpg"),
+  gallery1: assetUrl("/assets/04_open_gym_floor_view.png"),
+  gallery2: assetUrl("/assets/02_cardio_stairmaster_zone.png"),
+  gallery3: assetUrl("/assets/01_weight_zone_machine_area.png"),
   consultation: assetUrl("/assets/consultation-bg.jpg"),
 };
 
-// 갤러리 섹션 토글 — 실제 지점 사진이 있으므로 활성화
+// ê°¤ë¬ë¦¬ ì¹ì í ê¸ â ì¤ì  ì§ì  ì¬ì§ì´ ìì¼ë¯ë¡ íì±í
 const SHOW_GALLERY = true;
 
 const branchGroups = [
   {
     id: "oldgym",
-    brand: "올드짐",
-    title: "진주·사천·거제 올드짐",
-    description: "올드짐 참여 지점 혜택 확인",
-    priceText: "헬스 월 3만원대",
-    note: "지점별 가격 및 혜택은 상이할 수 있습니다.",
+    brand: "ì¬ëì§",
+    title: "ì§ì£¼Â·ì¬ì²Â·ê±°ì  ì¬ëì§",
+    description: "ì¬ëì§ ì°¸ì¬ ì§ì  íí íì¸",
+    priceText: "í¬ì¤ ì 3ë§ìë",
+    note: "ì§ì ë³ ê°ê²© ë° ííì ìì´í  ì ììµëë¤.",
     image: images.oldgym,
-    branches: ["평거점", "하대점", "사천점", "상동점", "아주점", "수월점"],
+    branches: ["íê±°ì ", "íëì ", "ì¬ì²ì ", "ìëì ", "ìì£¼ì ", "ììì "],
   },
   {
     id: "musclefactory24",
-    brand: "머슬팩토리24",
-    title: "진주·사천·삼천포·고성 머슬팩토리24",
-    description: "머슬팩토리24 참여 지점 혜택 확인",
-    priceText: "헬스 월 3만원대",
-    note: "지점별 가격 및 혜택은 상이할 수 있습니다.",
+    brand: "ë¨¸ì¬í©í ë¦¬24",
+    title: "ì§ì£¼Â·ì¬ì²Â·ì¼ì²í¬Â·ê³ ì± ë¨¸ì¬í©í ë¦¬24",
+    description: "ë¨¸ì¬í©í ë¦¬24 ì°¸ì¬ ì§ì  íí íì¸",
+    priceText: "í¬ì¤ ì 3ë§ìë",
+    note: "ì§ì ë³ ê°ê²© ë° ííì ìì´í  ì ììµëë¤.",
     image: images.musclefactory,
     branches: [
-      "보건대점", "호탄점", "신진주점", "하대점", "정촌점",
-      "사천본점", "삼천포벌리점", "사천터미널점", "고성점",
+      "ë³´ê±´ëì ", "í¸íì ", "ì ì§ì£¼ì ", "íëì ", "ì ì´ì ",
+      "ì¬ì²ë³¸ì ", "ì¼ì²í¬ë²ë¦¬ì ", "ì¬ì²í°ë¯¸ëì ", "ê³ ì±ì ",
     ],
   },
   {
     id: "urbangym",
-    brand: "어반짐",
-    title: "진주 어반짐",
-    description: "어반짐 참여 지점 혜택 확인",
-    priceText: "헬스 월 3만원대",
-    note: "지점별 가격 및 혜택은 상이할 수 있습니다.",
+    brand: "ì´ë°ì§",
+    title: "ì§ì£¼ ì´ë°ì§",
+    description: "ì´ë°ì§ ì°¸ì¬ ì§ì  íí íì¸",
+    priceText: "í¬ì¤ ì 3ë§ìë",
+    note: "ì§ì ë³ ê°ê²© ë° ííì ìì´í  ì ììµëë¤.",
     image: images.urbangym,
-    branches: ["진주평거점"],
+    branches: ["ì§ì£¼íê±°ì "],
   },
 ];
 
 const benefits = [
   {
     icon: WalletCards,
-    title: "헬스 월 3만원대",
-    description: "14주년 기념 단 2주간 특별 혜택",
+    title: "í¬ì¤ ì 3ë§ìë",
+    description: "14ì£¼ë ê¸°ë ë¨ 2ì£¼ê° í¹ë³ íí",
     image: null,
   },
   {
     icon: BadgeCheck,
-    title: "지점별 가격 상이",
-    description: "지점별 문의 필수",
+    title: "ì§ì ë³ ê°ê²© ìì´",
+    description: "ì§ì ë³ ë¬¸ì íì",
     image: null,
   },
   {
     icon: Gift,
-    title: "리뷰 작성 시 SPT(서비스 PT) 2회 제공",
-    description: "서비스 PT 혜택",
+    title: "ë¦¬ë·° ìì± ì SPT(ìë¹ì¤ PT) 2í ì ê³µ",
+    description: "ìë¹ì¤ PT íí",
     image: images.ptScene,
   },
   {
     icon: MapPin,
-    title: "참여 지점 혜택",
-    description: "진주·사천·거제·삼천포·고성",
+    title: "ì°¸ì¬ ì§ì  íí",
+    description: "ì§ì£¼Â·ì¬ì²Â·ê±°ì Â·ì¼ì²í¬Â·ê³ ì±",
     image: images.cardioZone,
   },
 ];
@@ -100,43 +100,43 @@ const benefits = [
 const brandCards = [
   {
     english: "OLD GYM",
-    korean: "올드짐",
-    line: "클래식한 트레이닝 감도",
+    korean: "ì¬ëì§",
+    line: "í´ëìí í¸ë ì´ë ê°ë",
     image: images.oldgym,
   },
   {
     english: "URBAN GYM",
-    korean: "어반짐",
-    line: "도심형 프리미엄 피트니스",
+    korean: "ì´ë°ì§",
+    line: "ëì¬í íë¦¬ë¯¸ì í¼í¸ëì¤",
     image: images.urbangym,
   },
   {
     english: "MUSCLE FACTORY 24",
-    korean: "머슬팩토리24",
-    line: "24시간 운동 루틴",
+    korean: "ë¨¸ì¬í©í ë¦¬24",
+    line: "24ìê° ì´ë ë£¨í´",
     image: images.musclefactory,
   },
 ];
 
 const galleryItems = [
-  { src: images.gallery1, title: "넓고 깔끔한 운동 환경", caption: "실제 공간" },
-  { src: images.gallery2, title: "쾌적한 유산소존", caption: "Cardio Zone" },
-  { src: images.gallery3, title: "프리미엄 웨이트존", caption: "Weight Zone" },
+  { src: images.gallery1, title: "ëê³  ê¹ëí ì´ë íê²½", caption: "ì¤ì  ê³µê°" },
+  { src: images.gallery2, title: "ì¾ì í ì ì°ìì¡´", caption: "Cardio Zone" },
+  { src: images.gallery3, title: "íë¦¬ë¯¸ì ì¨ì´í¸ì¡´", caption: "Weight Zone" },
 ];
 
 const faqs = [
   {
-    question: "모든 지점 가격이 동일한가요?",
-    answer: "지점별 운영 상황에 따라 가격은 상이할 수 있습니다.",
+    question: "ëª¨ë  ì§ì  ê°ê²©ì´ ëì¼íê°ì?",
+    answer: "ì§ì ë³ ì´ì ìí©ì ë°ë¼ ê°ê²©ì ìì´í  ì ììµëë¤.",
   },
   {
-    question: "SPT는 무엇인가요?",
-    answer: "SPT는 서비스 PT로, 리뷰 작성 고객에게 2회 제공됩니다.",
+    question: "SPTë ë¬´ìì¸ê°ì?",
+    answer: "SPTë ìë¹ì¤ PTë¡, ë¦¬ë·° ìì± ê³ ê°ìê² 2í ì ê³µë©ëë¤.",
   },
   {
-    question: "어느 지점이 참여하나요?",
+    question: "ì´ë ì§ì ì´ ì°¸ì¬íëì?",
     answer:
-      "진주·사천·거제 올드짐, 진주·사천·삼천포·고성 머슬팩토리24, 진주 어반짐 참여 지점이 함께합니다.",
+      "ì§ì£¼Â·ì¬ì²Â·ê±°ì  ì¬ëì§, ì§ì£¼Â·ì¬ì²Â·ì¼ì²í¬Â·ê³ ì± ë¨¸ì¬í©í ë¦¬24, ì§ì£¼ ì´ë°ì§ ì°¸ì¬ ì§ì ì´ í¨ê»í©ëë¤.",
   },
 ];
 
@@ -157,8 +157,8 @@ function SectionHeading({ kicker, title, description }) {
 }
 
 /**
- * ImageCard — 실제 사진을 dark overlay + gold border 카드로 감쌈.
- * overlayClassName으로 overlay 강도 조절 가능.
+ * ImageCard â ì¤ì  ì¬ì§ì dark overlay + gold border ì¹´ëë¡ ê°ì.
+ * overlayClassNameì¼ë¡ overlay ê°ë ì¡°ì  ê°ë¥.
  */
 function ImageCard({
   src,
@@ -188,7 +188,7 @@ function ImageCard({
 }
 
 /**
- * BrandThumbnail — 카드 상단 썸네일. hover 시 살짝 scale.
+ * BrandThumbnail â ì¹´ë ìë¨ ì¸ë¤ì¼. hover ì ì´ì§ scale.
  */
 function BrandThumbnail({ src, alt, label, subLabel, height = "h-[180px]" }) {
   return (
@@ -231,9 +231,9 @@ function GoldButton({ children, className = "", onClick, type = "button" }) {
 function HeroSection() {
   return (
     <header className="relative min-h-[92vh] overflow-hidden bg-dark-radial pb-24 pt-6 md:min-h-[760px] md:pb-28">
-      {/* 배경 glow */}
+      {/* ë°°ê²½ glow */}
       <div className="absolute left-1/2 top-20 h-72 w-72 -translate-x-1/2 rounded-full bg-champagne/10 blur-3xl md:h-[32rem] md:w-[32rem]" />
-      {/* 골드 "14" 장식 */}
+      {/* ê³¨ë "14" ì¥ì */}
       <div className="absolute right-[-7rem] top-28 hidden select-none text-[25rem] font-black leading-none text-champagne/[0.07] md:block">
         14
       </div>
@@ -256,37 +256,37 @@ function HeroSection() {
       </nav>
 
       <div className="section-shell relative z-10 grid gap-10 pt-16 md:grid-cols-[1.08fr_0.92fr] md:items-center md:pt-24">
-        {/* 왼쪽: 핵심 카피 */}
+        {/* ì¼ìª½: íµì¬ ì¹´í¼ */}
         <div>
           <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-champagne/35 bg-champagne/10 px-4 py-2 text-sm font-bold text-pearl shadow-gold-soft">
             <Trophy className="h-4 w-4 text-softgold" />
-            리턴라이프컴퍼니 14주년 고객감사제
+            ë¦¬í´ë¼ì´íì»´í¼ë 14ì£¼ë ê³ ê°ê°ì¬ì 
           </div>
           <h1 className="keep-words text-4xl font-black leading-[1.08] text-white sm:text-5xl md:text-6xl xl:text-7xl">
-            1년에 딱 한 번, 단 2주간
-            <span className="mt-2 block gold-text">헬스 월 3만원대 이벤트</span>
+            1ëì ë± í ë², ë¨ 2ì£¼ê°
+            <span className="mt-2 block gold-text">í¬ì¤ ì 3ë§ìë ì´ë²¤í¸</span>
           </h1>
           <p className="keep-words mt-6 max-w-xl text-lg leading-8 text-zinc-300 md:text-xl">
-            올드짐 · 머슬팩토리24 · 어반짐 참여 지점 혜택.
-            진주 · 사천 · 거제 · 삼천포 · 고성 혜택 적용.
+            ì¬ëì§ Â· ë¨¸ì¬í©í ë¦¬24 Â· ì´ë°ì§ ì°¸ì¬ ì§ì  íí.
+            ì§ì£¼ Â· ì¬ì² Â· ê±°ì  Â· ì¼ì²í¬ Â· ê³ ì± íí ì ì©.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
             <GoldButton onClick={scrollToBranches} className="w-full sm:w-auto">
-              가까운 지점 혜택 확인하기
+              ê°ê¹ì´ ì§ì  íí íì¸íê¸°
             </GoldButton>
             <p className="flex items-center justify-center gap-2 text-sm font-semibold text-zinc-300 sm:justify-start">
               <ShieldCheck className="h-4 w-4 text-champagne" />
-              지점별 가격 및 혜택은 상이할 수 있습니다.
+              ì§ì ë³ ê°ê²© ë° ííì ìì´í  ì ììµëë¤.
             </p>
           </div>
         </div>
 
-        {/* 오른쪽: 실제 헬스장 사진 카드 */}
+        {/* ì¤ë¥¸ìª½: ì¤ì  í¬ì¤ì¥ ì¬ì§ ì¹´ë */}
         <div className="relative mx-auto w-full max-w-[430px]">
           <div className="absolute inset-6 rounded-full bg-champagne/20 blur-3xl" />
           <ImageCard
             src={images.hero}
-            alt="리턴라이프컴퍼니 헬스장 내부"
+            alt="ë¦¬í´ë¼ì´íì»´í¼ë í¬ì¤ì¥ ë´ë¶"
             loading="eager"
             className="h-[560px] rounded-[28px] shadow-gold"
             overlayClassName="bg-gradient-to-t from-black/88 via-black/55 to-black/25"
@@ -302,17 +302,17 @@ function HeroSection() {
               </div>
               <div>
                 <p className="keep-words text-xl font-black text-zinc-100 md:text-2xl">
-                  1년에 딱 한 번, 단 2주간
+                  1ëì ë± í ë², ë¨ 2ì£¼ê°
                 </p>
                 <p className="mt-3 gold-text text-6xl font-black tracking-normal md:text-7xl">
-                  <span className="block text-4xl md:text-5xl">헬스 월</span>
-                  <span className="block">3만원대</span>
+                  <span className="block text-4xl md:text-5xl">í¬ì¤ ì</span>
+                  <span className="block">3ë§ìë</span>
                 </p>
                 <p className="mt-4 text-base leading-7 text-zinc-300">
-                  리뷰 작성 고객에게 SPT(서비스 PT) 2회 제공
+                  ë¦¬ë·° ìì± ê³ ê°ìê² SPT(ìë¹ì¤ PT) 2í ì ê³µ
                 </p>
                 <div className="mt-6 grid grid-cols-2 gap-2">
-                  {["올드짐", "머슬팩토리24", "어반짐", "참여 지점 혜택"].map((item) => (
+                  {["ì¬ëì§", "ë¨¸ì¬í©í ë¦¬24", "ì´ë°ì§", "ì°¸ì¬ ì§ì  íí"].map((item) => (
                     <div
                       key={item}
                       className="rounded-2xl border border-white/10 bg-black/40 px-3 py-3 text-center text-sm font-bold text-pearl"
@@ -336,8 +336,8 @@ function BrandSection() {
       <div className="section-shell">
         <SectionHeading
           kicker="Return Life Company"
-          title="리턴라이프컴퍼니"
-          description="올드짐, 어반짐, 머슬팩토리24는 리턴라이프컴퍼니가 운영합니다."
+          title="ë¦¬í´ë¼ì´íì»´í¼ë"
+          description="ì¬ëì§, ì´ë°ì§, ë¨¸ì¬í©í ë¦¬24ë ë¦¬í´ë¼ì´íì»´í¼ëê° ì´ìí©ëë¤."
         />
         <div className="grid gap-4 md:grid-cols-3">
           {brandCards.map((brand) => (
@@ -345,10 +345,10 @@ function BrandSection() {
               key={brand.english}
               className="glass-card group overflow-hidden rounded-[24px] p-4 transition duration-300 hover:-translate-y-1 hover:border-softgold/60"
             >
-              {/* 실제 헬스장 사진 썸네일 */}
+              {/* ì¤ì  í¬ì¤ì¥ ì¬ì§ ì¸ë¤ì¼ */}
               <BrandThumbnail
                 src={brand.image}
-                alt={`${brand.korean} 시설 사진`}
+                alt={`${brand.korean} ìì¤ ì¬ì§`}
                 label={brand.english}
                 height="h-[180px]"
               />
@@ -373,8 +373,8 @@ function BenefitsSection() {
       <div className="section-shell">
         <SectionHeading
           kicker="Special Benefits"
-          title="14주년 고객감사제 혜택"
-          description="진주·사천·거제·삼천포·고성 참여 지점 혜택을 가까운 브랜드에서 확인하세요."
+          title="14ì£¼ë ê³ ê°ê°ì¬ì  íí"
+          description="ì§ì£¼Â·ì¬ì²Â·ê±°ì Â·ì¼ì²í¬Â·ê³ ì± ì°¸ì¬ ì§ì  ííì ê°ê¹ì´ ë¸ëëìì íì¸íì¸ì."
         />
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {benefits.map((benefit) => {
@@ -384,7 +384,7 @@ function BenefitsSection() {
                 key={benefit.title}
                 className="glass-card group overflow-hidden rounded-[24px] transition duration-300 hover:-translate-y-1 hover:border-champagne/60"
               >
-                {/* SPT / 참여 지점 카드에만 이미지 썸네일 */}
+                {/* SPT / ì°¸ì¬ ì§ì  ì¹´ëìë§ ì´ë¯¸ì§ ì¸ë¤ì¼ */}
                 {benefit.image ? (
                   <div className="relative h-[130px] overflow-hidden">
                     <img
@@ -411,8 +411,8 @@ function BenefitsSection() {
           })}
         </div>
         <p className="mt-6 text-center text-sm font-semibold text-zinc-400">
-          지점별 가격 및 혜택은 상이할 수 있습니다.
-          <span className="mt-2 block">정확한 가격과 혜택은 상담 시 안내됩니다.</span>
+          ì§ì ë³ ê°ê²© ë° ííì ìì´í  ì ììµëë¤.
+          <span className="mt-2 block">ì íí ê°ê²©ê³¼ ííì ìë´ ì ìë´ë©ëë¤.</span>
         </p>
       </div>
     </section>
@@ -425,10 +425,10 @@ function GallerySection() {
       <div className="section-shell">
         <SectionHeading
           kicker="Premium Space"
-          title="리턴라이프컴퍼니가 운영하는 피트니스 공간"
-          description="실제 공간 사진으로 참여 지점의 운동 환경을 확인해보세요."
+          title="ë¦¬í´ë¼ì´íì»´í¼ëê° ì´ìíë í¼í¸ëì¤ ê³µê°"
+          description="ì¤ì  ê³µê° ì¬ì§ì¼ë¡ ì°¸ì¬ ì§ì ì ì´ë íê²½ì íì¸í´ë³´ì¸ì."
         />
-        {/* 모바일: 1열, PC: 3열 */}
+        {/* ëª¨ë°ì¼: 1ì´, PC: 3ì´ */}
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {galleryItems.map((item) => (
             <ImageCard
@@ -461,8 +461,8 @@ function BranchSection() {
       <div className="section-shell">
         <SectionHeading
           kicker="Branches"
-          title="참여 브랜드 / 지점 선택"
-          description="브랜드 카드를 눌러 이번 14주년 고객감사제 참여 지점을 확인해보세요."
+          title="ì°¸ì¬ ë¸ëë / ì§ì  ì í"
+          description="ë¸ëë ì¹´ëë¥¼ ëë¬ ì´ë² 14ì£¼ë ê³ ê°ê°ì¬ì  ì°¸ì¬ ì§ì ì íì¸í´ë³´ì¸ì."
         />
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {branchGroups.map((group) => {
@@ -479,11 +479,11 @@ function BranchSection() {
                 }}
                 className={`glass-card group flex min-h-[240px] flex-col rounded-[24px] p-5 text-left transition duration-300 hover:-translate-y-1 ${isActive ? "branch-card-active" : ""}`}
               >
-                {/* 실제 사진 썸네일 */}
+                {/* ì¤ì  ì¬ì§ ì¸ë¤ì¼ */}
                 <BrandThumbnail
                   src={group.image}
                   alt={group.title}
-                  subLabel={`${group.branches.length}개 지점`}
+                  subLabel={`${group.branches.length}ê° ì§ì `}
                   height="h-[110px]"
                 />
                 <div className="mb-6 mt-5 flex items-start justify-between gap-4">
@@ -503,7 +503,7 @@ function BranchSection() {
                     onClick={(e) => e.stopPropagation()}
                     className="inline-flex items-center gap-1 rounded-full border border-champagne/45 px-4 py-2 text-sm font-extrabold text-champagne transition hover:bg-champagne hover:text-black"
                   >
-                    지점 문의 <ChevronRight className="h-4 w-4" />
+                    ì§ì  ë¬¸ì <ChevronRight className="h-4 w-4" />
                   </a>
                 </div>
               </article>
@@ -511,14 +511,14 @@ function BranchSection() {
           })}
         </div>
 
-        {/* 세부 지점 목록 */}
+        {/* ì¸ë¶ ì§ì  ëª©ë¡ */}
         <div className="glass-card mt-5 rounded-[24px] p-5 md:p-6">
           <div className="mb-5 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="text-sm font-bold text-champagne">참여 지점</p>
+              <p className="text-sm font-bold text-champagne">ì°¸ì¬ ì§ì </p>
               <h3 className="keep-words mt-2 text-2xl font-black text-white">{selectedGroup.title}</h3>
               <p className="mt-2 text-sm font-semibold leading-6 text-zinc-400">
-                아래 지점들이 이번 14주년 고객감사제에 참여합니다.
+                ìë ì§ì ë¤ì´ ì´ë² 14ì£¼ë ê³ ê°ê°ì¬ì ì ì°¸ì¬í©ëë¤.
               </p>
             </div>
             <p className="text-sm font-bold text-pearl">{selectedGroup.note}</p>
@@ -536,8 +536,8 @@ function BranchSection() {
           </div>
         </div>
         <p className="mt-6 text-center text-sm font-semibold text-zinc-400">
-          지점별 가격 및 혜택은 상이할 수 있습니다.
-          <span className="mt-2 block">정확한 가격과 혜택은 상담 시 안내됩니다.</span>
+          ì§ì ë³ ê°ê²© ë° ííì ìì´í  ì ììµëë¤.
+          <span className="mt-2 block">ì íí ê°ê²©ê³¼ ííì ìë´ ì ìë´ë©ëë¤.</span>
         </p>
       </div>
     </section>
@@ -549,7 +549,7 @@ function FAQSection() {
   return (
     <section className="pb-28 pt-20 md:pb-32 md:pt-28">
       <div className="section-shell">
-        <SectionHeading kicker="FAQ" title="자주 묻는 질문" />
+        <SectionHeading kicker="FAQ" title="ìì£¼ ë¬»ë ì§ë¬¸" />
         <div className="mx-auto grid max-w-4xl gap-4">
           {faqs.map((faq) => (
             <article key={faq.question} className="glass-card rounded-[22px] p-5">
@@ -571,15 +571,15 @@ function StickyCTA() {
     <div className="fixed inset-x-0 bottom-0 z-50 border-t border-champagne/25 bg-black/85 px-4 py-3 backdrop-blur-xl md:hidden">
       <div className="mx-auto flex max-w-md items-center gap-3">
         <div className="min-w-0 flex-1">
-          <p className="keep-words text-sm font-black leading-tight text-white">헬스 월 3만원대!</p>
-          <p className="keep-words text-xs font-semibold text-zinc-400">진주·사천·거제·삼천포·고성 혜택</p>
+          <p className="keep-words text-sm font-black leading-tight text-white">í¬ì¤ ì 3ë§ìë!</p>
+          <p className="keep-words text-xs font-semibold text-zinc-400">ì§ì£¼Â·ì¬ì²Â·ê±°ì Â·ì¼ì²í¬Â·ê³ ì± íí</p>
         </div>
         <button
           type="button"
           onClick={scrollToBranches}
           className="shrink-0 rounded-full bg-gold-gradient px-4 py-3 text-sm font-black text-black shadow-gold-soft"
         >
-          지점 확인
+          ì§ì  íì¸
         </button>
       </div>
     </div>
