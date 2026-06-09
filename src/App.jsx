@@ -33,6 +33,9 @@ const images = {
   footer: assetUrl("/assets/footer-gym.jpg"),
 };
 
+// 갤러리 섹션 토글 — 실제 지점 사진 준비 후 true로 변경
+const SHOW_GALLERY = false;
+
 const branchGroups = [
   {
     id: "oldgym",
@@ -81,8 +84,7 @@ const benefits = [
   {
     icon: WalletCards,
     title: "헬스 월 3만원대",
-    description: "합리적인 가격 혜택",
-    image: images.benefitPt,
+    description: "14주년 기념 단 2주간 특별 혜택",
   },
   {
     icon: BadgeCheck,
@@ -93,13 +95,11 @@ const benefits = [
     icon: Gift,
     title: "리뷰 작성 시 SPT(서비스 PT) 2회 제공",
     description: "서비스 PT 혜택",
-    image: images.reviewSpt,
   },
   {
     icon: MapPin,
-    title: "참여 지점 확대",
+    title: "참여 지점 혜택",
     description: "진주·사천·거제·삼천포·고성",
-    image: images.branchOldgym,
   },
 ];
 
@@ -195,6 +195,11 @@ function SectionHeading({ kicker, title, description }) {
   );
 }
 
+/**
+ * ImageCard — 이미지는 아주 은은한 배경 텍스처로만 사용.
+ * opacity-20 + grayscale + 강한 dark overlay로 이미지 자체가 거의 안 보이게 처리.
+ * 실제 지점 사진으로 교체 시 imageClassName으로 opacity 조정 가능.
+ */
 function ImageCard({
   src,
   alt,
@@ -212,14 +217,51 @@ function ImageCard({
           src={src}
           alt={alt}
           loading={loading}
-          className={`absolute inset-0 h-full w-full object-cover opacity-80 ${imageClassName}`}
+          className={`absolute inset-0 h-full w-full object-cover object-center opacity-20 grayscale ${imageClassName}`}
           onError={(event) => {
             event.currentTarget.style.display = "none";
           }}
         />
       ) : null}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/88 via-black/45 to-black/10" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/92 via-black/75 to-black/50" />
       <div className="relative z-10 h-full">{children}</div>
+    </div>
+  );
+}
+
+/**
+ * BrandThumbnail — 브랜드/지점 카드 상단 작은 썸네일 이미지.
+ * 실제 사진이 아닐 때도 어색하지 않게 어둡게 처리.
+ */
+function BrandThumbnail({ src, alt, label, subLabel, height = "h-[160px]" }) {
+  return (
+    <div
+      className={`relative ${height} overflow-hidden rounded-[18px] border border-white/10 bg-zinc-950`}
+    >
+      {src ? (
+        <img
+          src={src}
+          alt={alt}
+          loading="lazy"
+          className="absolute inset-0 h-full w-full object-cover object-center opacity-35 grayscale"
+          onError={(event) => {
+            event.currentTarget.style.display = "none";
+          }}
+        />
+      ) : null}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/60 to-black/25" />
+      <div className="absolute inset-0 flex items-end justify-between p-4">
+        {label ? (
+          <p className="text-sm font-black tracking-[0.18em] text-champagne">
+            {label}
+          </p>
+        ) : null}
+        {subLabel ? (
+          <span className="rounded-full border border-champagne/30 bg-black/60 px-3 py-1 text-xs font-bold text-pearl">
+            {subLabel}
+          </span>
+        ) : null}
+      </div>
     </div>
   );
 }
@@ -240,8 +282,10 @@ function GoldButton({ children, className = "", onClick, type = "button" }) {
 function HeroSection() {
   return (
     <header className="relative min-h-[92vh] overflow-hidden bg-dark-radial pb-24 pt-6 md:min-h-[760px] md:pb-28">
+      {/* 배경 glow */}
       <div className="absolute left-1/2 top-20 h-72 w-72 -translate-x-1/2 rounded-full bg-champagne/10 blur-3xl md:h-[32rem] md:w-[32rem]" />
-      <div className="absolute right-[-7rem] top-28 hidden text-[25rem] font-black leading-none text-white/[0.035] md:block">
+      {/* 장식 숫자 "14" — champagne 골드 톤으로 */}
+      <div className="absolute right-[-7rem] top-28 hidden select-none text-[25rem] font-black leading-none text-champagne/[0.07] md:block">
         14
       </div>
       <div className="absolute bottom-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-champagne/50 to-transparent" />
@@ -267,6 +311,7 @@ function HeroSection() {
       </nav>
 
       <div className="section-shell relative z-10 grid gap-10 pt-16 md:grid-cols-[1.08fr_0.92fr] md:items-center md:pt-24">
+        {/* 왼쪽: 핵심 카피 */}
         <div>
           <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-champagne/35 bg-champagne/10 px-4 py-2 text-sm font-bold text-pearl shadow-gold-soft">
             <Trophy className="h-4 w-4 text-softgold" />
@@ -294,15 +339,16 @@ function HeroSection() {
           </div>
         </div>
 
+        {/* 오른쪽: 혜택 정보 카드 — 이미지는 아주 은은한 텍스처로만 */}
         <div className="relative mx-auto w-full max-w-[430px]">
           <div className="absolute inset-6 rounded-full bg-champagne/20 blur-3xl" />
           <ImageCard
             src={images.hero}
-            alt="리턴라이프컴퍼니 14주년 고객감사제 헬스장 이미지"
+            alt="리턴라이프컴퍼니 14주년 고객감사제"
             loading="eager"
             className="h-[560px] rounded-[28px] p-6 shadow-gold md:p-8"
           >
-            <div className="absolute right-4 top-2 text-[9rem] font-black leading-none text-white/[0.04]">
+            <div className="absolute right-4 top-2 select-none text-[9rem] font-black leading-none text-champagne/[0.06]">
               14
             </div>
             <p className="text-sm font-bold tracking-[0.22em] text-champagne">
@@ -355,18 +401,14 @@ function BrandSection() {
               key={brand.english}
               className="glass-card group overflow-hidden rounded-[24px] p-4 transition duration-300 hover:-translate-y-1 hover:border-softgold/60 hover:bg-white/[0.07]"
             >
-              <ImageCard
+              {/* 작은 썸네일 — opacity 낮게, grayscale */}
+              <BrandThumbnail
                 src={brand.image}
-                alt={`${brand.korean} 브랜드 대표 이미지`}
-                className="mb-5 aspect-[4/3] rounded-[20px]"
-              >
-                <div className="flex h-full items-end p-4">
-                  <p className="text-sm font-black tracking-[0.18em] text-champagne">
-                    {brand.english}
-                  </p>
-                </div>
-              </ImageCard>
-              <div className="mb-5 flex items-center justify-between">
+                alt={`${brand.korean} 대표 이미지`}
+                label={brand.english}
+                height="h-[160px]"
+              />
+              <div className="mb-5 mt-5 flex items-center justify-between">
                 <div className="h-px w-14 bg-gradient-to-r from-champagne to-transparent" />
                 <Dumbbell className="h-5 w-5 text-champagne opacity-80" />
               </div>
@@ -396,27 +438,14 @@ function BenefitsSection() {
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {benefits.map((benefit) => {
             const Icon = benefit.icon;
-
             return (
               <article
                 key={benefit.title}
-                className="glass-card rounded-[24px] p-5 transition duration-300 hover:-translate-y-1 hover:border-champagne/60"
+                className="glass-card rounded-[24px] p-6 transition duration-300 hover:-translate-y-1 hover:border-champagne/60"
               >
-                {benefit.image ? (
-                  <ImageCard
-                    src={benefit.image}
-                    alt={`${benefit.title} 혜택 이미지`}
-                    className="mb-5 aspect-[16/10] rounded-[18px]"
-                  >
-                    <div className="flex h-full items-end p-3">
-                      <span className="rounded-full border border-champagne/30 bg-black/45 px-3 py-1 text-xs font-black text-champagne">
-                        14th Benefit
-                      </span>
-                    </div>
-                  </ImageCard>
-                ) : null}
-                <div className="mb-5 grid h-12 w-12 place-items-center rounded-2xl bg-champagne/10 text-champagne">
-                  <Icon className="h-6 w-6" />
+                {/* 아이콘 중심 — 이미지 없이 골드 아이콘 + 텍스트 */}
+                <div className="mb-5 grid h-14 w-14 place-items-center rounded-2xl bg-champagne/10 text-champagne">
+                  <Icon className="h-7 w-7" />
                 </div>
                 <h3 className="keep-words min-h-16 text-2xl font-black leading-tight text-white">
                   {benefit.title}
@@ -438,6 +467,10 @@ function BenefitsSection() {
   );
 }
 
+/**
+ * 갤러리 섹션 — 실제 지점 사진 준비 전까지 숨김.
+ * SHOW_GALLERY = true 로 변경하면 다시 노출됨.
+ */
 function GallerySection() {
   return (
     <section className="py-20 md:py-28">
@@ -490,65 +523,59 @@ function BranchSection({ onInquiry }) {
             const firstBranch = `${group.brand} ${group.branches[0]}`;
 
             return (
-            <article
-              key={group.id}
-              role="button"
-              tabIndex={0}
-              onClick={() => setActiveGroup(group.id)}
-              onKeyDown={(event) => {
-                if (event.key === "Enter" || event.key === " ") {
-                  event.preventDefault();
-                  setActiveGroup(group.id);
-                }
-              }}
-              className={`glass-card flex min-h-[240px] flex-col rounded-[24px] p-5 text-left transition duration-300 hover:-translate-y-1 ${
-                isActive ? "branch-card-active" : ""
-              }`}
-            >
-              <ImageCard
-                src={group.image}
-                alt={`${group.title} 참여 지점 이미지`}
-                className="mb-5 aspect-[16/10] rounded-[20px]"
+              <article
+                key={group.id}
+                role="button"
+                tabIndex={0}
+                onClick={() => setActiveGroup(group.id)}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    setActiveGroup(group.id);
+                  }
+                }}
+                className={`glass-card flex min-h-[240px] flex-col rounded-[24px] p-5 text-left transition duration-300 hover:-translate-y-1 ${
+                  isActive ? "branch-card-active" : ""
+                }`}
               >
-                <div className="flex h-full items-end justify-between gap-3 p-4">
-                  <span className="rounded-full border border-champagne/30 bg-black/45 px-3 py-1 text-xs font-black text-champagne">
-                    참여 지점
-                  </span>
-                  <span className="text-xs font-bold text-pearl">
-                    {group.branches.length}개 지점
-                  </span>
-                </div>
-              </ImageCard>
-              <div className="mb-6 flex items-start justify-between gap-4">
-                <div>
-                  <p className="text-sm font-bold text-champagne">{group.brand}</p>
-                  <h3 className="keep-words mt-2 text-2xl font-black text-white">
-                    {group.title}
-                  </h3>
-                  <p className="mt-3 text-sm font-semibold leading-6 text-zinc-400">
-                    {group.description}
-                  </p>
-                </div>
-                <Building2 className="h-6 w-6 shrink-0 text-champagne" />
-              </div>
+                {/* 작은 썸네일 — 이미지 배경 중심 아닌 블랙 카드 중심 */}
+                <BrandThumbnail
+                  src={group.image}
+                  alt={group.title}
+                  subLabel={`${group.branches.length}개 지점`}
+                  height="h-[100px]"
+                />
 
-              <div className="mt-auto flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                <span className="rounded-full border border-champagne/30 bg-champagne/10 px-3 py-1 text-sm font-bold text-pearl">
-                  {group.priceText}
-                </span>
-                <button
-                  type="button"
-                  onClick={(event) => {
-                    event.stopPropagation();
-                    onInquiry(firstBranch);
-                  }}
-                  className="inline-flex items-center gap-1 rounded-full border border-champagne/45 px-4 py-2 text-sm font-extrabold text-champagne transition hover:bg-champagne hover:text-black"
-                >
-                  문의하기
-                  <ChevronRight className="h-4 w-4" />
-                </button>
-              </div>
-            </article>
+                <div className="mb-6 mt-5 flex items-start justify-between gap-4">
+                  <div>
+                    <p className="text-sm font-bold text-champagne">{group.brand}</p>
+                    <h3 className="keep-words mt-2 text-2xl font-black text-white">
+                      {group.title}
+                    </h3>
+                    <p className="mt-3 text-sm font-semibold leading-6 text-zinc-400">
+                      {group.description}
+                    </p>
+                  </div>
+                  <Building2 className="h-6 w-6 shrink-0 text-champagne" />
+                </div>
+
+                <div className="mt-auto flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                  <span className="rounded-full border border-champagne/30 bg-champagne/10 px-3 py-1 text-sm font-bold text-pearl">
+                    {group.priceText}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      onInquiry(firstBranch);
+                    }}
+                    className="inline-flex items-center gap-1 rounded-full border border-champagne/45 px-4 py-2 text-sm font-extrabold text-champagne transition hover:bg-champagne hover:text-black"
+                  >
+                    문의하기
+                    <ChevronRight className="h-4 w-4" />
+                  </button>
+                </div>
+              </article>
             );
           })}
         </div>
@@ -603,7 +630,6 @@ function LeadFormSection({ selectedBranch }) {
 
   useEffect(() => {
     if (!selectedBranch) return;
-
     setForm((current) => ({ ...current, branch: selectedBranch }));
     setErrors((current) => ({ ...current, branch: "" }));
   }, [selectedBranch]);
@@ -616,26 +642,21 @@ function LeadFormSection({ selectedBranch }) {
 
   function validateForm() {
     const nextErrors = {};
-
     if (!form.name.trim()) nextErrors.name = "이름을 입력해주세요.";
     if (!form.phone.trim()) nextErrors.phone = "연락처를 입력해주세요.";
     if (!form.branch) nextErrors.branch = "관심 지점을 선택해주세요.";
-
     setErrors(nextErrors);
     return Object.keys(nextErrors).length === 0;
   }
 
   function handleSubmit(event) {
     event.preventDefault();
-
     if (!validateForm()) return;
-
     const payload = {
       ...form,
       submittedAt: new Date().toISOString(),
       campaign: "returnlife-14th-anniversary",
     };
-
     console.log("상담 신청 데이터", payload);
     alert("상담 신청이 접수되었습니다. 입력하신 내용을 확인했습니다.");
     setForm(initialFormState);
@@ -644,6 +665,7 @@ function LeadFormSection({ selectedBranch }) {
   return (
     <section id="lead-form" className="scroll-mt-8 bg-graphite/60 py-20 md:py-28">
       <div className="section-shell grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+        {/* 왼쪽: 텍스트 + 혜택 요약 — 이미지 제거, 카드 UI 중심 */}
         <div>
           <p className="mb-3 text-sm font-semibold uppercase tracking-[0.22em] text-champagne">
             Consultation
@@ -653,43 +675,37 @@ function LeadFormSection({ selectedBranch }) {
             <span className="block gold-text">혜택 받기</span>
           </h2>
           <p className="mt-5 text-base leading-7 text-zinc-300 md:text-lg">
-            간단한 정보 입력 후 가까운 지점의 14주년 혜택을 안내받아보세요.
+            가까운 지점의 실제 혜택을 안내받아보세요.
           </p>
 
-          <ImageCard
-            src={images.footer || images.benefitPt}
-            alt="14주년 혜택 상담 이미지"
-            className="mt-8 aspect-[16/10] rounded-[24px] md:aspect-[4/3]"
-          >
-            <div className="flex h-full flex-col justify-end p-5">
-              <p className="text-sm font-black tracking-[0.18em] text-champagne">
-                CONSULTATION
-              </p>
-              <h3 className="keep-words mt-2 text-2xl font-black text-white">
-                14주년 혜택 상담
-              </h3>
-              <p className="keep-words mt-2 text-sm font-semibold leading-6 text-zinc-300">
-                가까운 지점의 실제 혜택을 안내받아보세요.
-              </p>
+          {/* 혜택 요약 카드 */}
+          <div className="mt-8 glass-card rounded-[24px] border border-champagne/30 p-6">
+            <p className="mb-5 text-xs font-bold uppercase tracking-[0.22em] text-champagne">
+              14주년 특별 혜택
+            </p>
+            <div className="space-y-4">
+              {[
+                ["1년에 딱 한 번, 단 2주간", Trophy],
+                ["헬스 월 3만원대 이벤트", WalletCards],
+                ["리뷰 작성 시 SPT(서비스 PT) 2회 제공", Gift],
+              ].map(([text, Icon]) => (
+                <div key={text} className="flex items-center gap-3 text-pearl">
+                  <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-champagne/10">
+                    <Icon className="h-4 w-4 text-champagne" />
+                  </span>
+                  <span className="font-bold">{text}</span>
+                </div>
+              ))}
             </div>
-          </ImageCard>
-
-          <div className="mt-8 space-y-4">
-            {[
-              ["1년에 딱 한 번, 단 2주간", Trophy],
-              ["헬스 월 3만원대 이벤트", WalletCards],
-              ["리뷰 작성 시 SPT(서비스 PT) 2회 제공", Gift],
-            ].map(([text, Icon]) => (
-              <div key={text} className="flex items-center gap-3 text-pearl">
-                <span className="grid h-9 w-9 place-items-center rounded-full bg-champagne/10">
-                  <Icon className="h-4 w-4 text-champagne" />
-                </span>
-                <span className="font-bold">{text}</span>
-              </div>
-            ))}
           </div>
+
+          <p className="mt-6 flex items-start gap-2 text-sm font-semibold text-zinc-400">
+            <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-champagne" />
+            진주·사천·거제·삼천포·고성 참여 지점 혜택 적용
+          </p>
         </div>
 
+        {/* 오른쪽: 상담 신청 폼 */}
         <form
           onSubmit={handleSubmit}
           className="glass-card rounded-[28px] p-5 md:p-7"
@@ -716,7 +732,11 @@ function LeadFormSection({ selectedBranch }) {
               />
             </FormField>
 
-            <FormField label="관심 지점 선택" error={errors.branch} className="sm:col-span-2">
+            <FormField
+              label="관심 지점 선택"
+              error={errors.branch}
+              className="sm:col-span-2"
+            >
               <select
                 name="branch"
                 value={form.branch}
@@ -732,7 +752,10 @@ function LeadFormSection({ selectedBranch }) {
               </select>
             </FormField>
 
-            <FormField label="문의 내용 또는 희망 상담 시간" className="sm:col-span-2">
+            <FormField
+              label="문의 내용 또는 희망 상담 시간"
+              className="sm:col-span-2"
+            >
               <textarea
                 name="message"
                 value={form.message}
@@ -763,7 +786,9 @@ function FormField({ label, error, children, className = "" }) {
     <label className={`block ${className}`}>
       <span className="mb-2 block text-sm font-bold text-pearl">{label}</span>
       {children}
-      {error ? <span className="mt-2 block text-sm text-softgold">{error}</span> : null}
+      {error ? (
+        <span className="mt-2 block text-sm text-softgold">{error}</span>
+      ) : null}
     </label>
   );
 }
@@ -781,7 +806,9 @@ function FAQSection() {
                 <MessageCircle className="mt-1 h-5 w-5 shrink-0 text-champagne" />
                 {faq.question}
               </h3>
-              <p className="mt-3 pl-8 text-base leading-7 text-zinc-300">{faq.answer}</p>
+              <p className="mt-3 pl-8 text-base leading-7 text-zinc-300">
+                {faq.answer}
+              </p>
             </article>
           ))}
         </div>
@@ -827,7 +854,7 @@ function App() {
       <HeroSection />
       <BrandSection />
       <BenefitsSection />
-      <GallerySection />
+      {SHOW_GALLERY && <GallerySection />}
       <BranchSection onInquiry={handleBranchInquiry} />
       <LeadFormSection selectedBranch={selectedBranch} />
       <FAQSection />
