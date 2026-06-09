@@ -21,7 +21,7 @@ const assetUrl = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, ""
 // ──────────────────────────────────────────────────────────
 // 네이버폼 링크 — 폼 생성 후 아래 URL을 교체하세요
 // ──────────────────────────────────────────────────────────
-const NAVER_FORM_URL = "#"; // TODO: 네이버폼 링크 입력 필요
+const NAVER_FORM_URL = "https://naver.me/xYNbjjGC";
 
 const images = {
   hero: assetUrl("/assets/hero-gym.jpg"),
@@ -644,7 +644,6 @@ function ConsultSection() {
                   href={NAVER_FORM_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={NAVER_FORM_URL === "#" ? (e) => { e.preventDefault(); alert("네이버폼 링크를 NAVER_FORM_URL 변수에 입력해주세요."); } : undefined}
                   className="group inline-flex w-full items-center justify-center gap-3 rounded-2xl bg-gold-gradient px-6 py-5 text-lg font-extrabold text-black shadow-gold transition duration-300 hover:-translate-y-0.5 hover:shadow-gold-soft sm:w-auto sm:px-10"
                 >
                   <ExternalLink className="h-5 w-5" />
@@ -687,7 +686,6 @@ function StickyCTA() {
           href={NAVER_FORM_URL}
           target="_blank"
           rel="noopener noreferrer"
-          onClick={NAVER_FORM_URL === "#" ? (e) => { e.preventDefault(); scrollToConsult(); } : undefined}
           className="shrink-0 rounded-full bg-gold-gradient px-4 py-3 text-sm font-black text-black shadow-gold-soft"
         >
           상담 신청
