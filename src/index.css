@@ -20,6 +20,8 @@ html {
 }
 
 body {
+  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Noto Sans KR", system-ui, sans-serif;
+  word-break: keep-all;
   min-width: 320px;
   margin: 0;
   overflow-x: hidden;
