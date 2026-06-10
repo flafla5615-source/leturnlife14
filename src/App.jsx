@@ -103,7 +103,7 @@ const benefits = [
     icon: Gift,
     title: "리뷰 작성 시 SPT(서비스 PT) 2회 제공",
     description: "서비스 PT 혜택",
-    image: images.ptScene,
+    image: assetUrl("/assets/spt-benefit-card-replacement.png"),
   },
   {
     icon: MapPin,
