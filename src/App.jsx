@@ -266,7 +266,7 @@ function ImageCard({
 /**
  * BrandThumbnail — 카드 상단 썸네일. hover 시 살짝 scale.
  */
-function BrandThumbnail({ src, alt, label, subLabel, height = "h-[180px]" }) {
+function BrandThumbnail({ src, alt, label, subLabel, height = "h-[210px]" }) {
   return (
     <div className={`relative ${height} overflow-hidden rounded-[18px] border border-[#D6B46A]/20 bg-zinc-950`}>
       {src && (
@@ -447,7 +447,7 @@ function HeroSection() {
                 src={uiImages.anniversaryBenefit}
                 alt="리턴라이프컴퍼니 14주년 고객감사제 혜택"
                 loading="eager"
-                className="h-[280px] rounded-[calc(2rem-0.375rem)] border-0 sm:h-[420px] md:h-[560px]"
+                className="h-[420px] rounded-[calc(2rem-0.375rem)] border-0 sm:h-[480px] md:h-[560px]"
                 overlayClassName="bg-black/40"
               >
                 <div className="flex h-full flex-col justify-between p-6 md:p-8">
@@ -629,7 +629,7 @@ function BenefitsSection() {
               <BezelCard className="group h-full transition-transform duration-500 ease-spring hover:-translate-y-1">
                 <article className="flex h-full flex-col">
                   {benefit.image && (
-                    <div className="relative h-40 shrink-0 overflow-hidden md:h-52">
+                    <div className="relative h-44 shrink-0 overflow-hidden md:h-60">
                       <img
                         src={benefit.image}
                         alt={benefit.title}
@@ -689,7 +689,7 @@ function GallerySection() {
               <ImageCard
                 src={item.src}
                 alt={item.title}
-                className="aspect-[4/5] rounded-[24px] transition-all duration-500 ease-spring hover:-translate-y-1 hover:border-softgold/60"
+                className="aspect-[3/2] rounded-[24px] transition-all duration-500 ease-spring hover:-translate-y-1 hover:border-softgold/60"
                 overlayClassName="bg-gradient-to-t from-black/75 via-black/25 to-transparent"
               >
                 <div className="flex h-full flex-col justify-end p-5">
@@ -739,7 +739,7 @@ function BranchSection() {
                       src={group.image}
                       alt={group.title}
                       subLabel={`${group.branches.length}개 지점`}
-                      height="h-[110px]"
+                      height="h-[140px]"
                     />
                     <div className="mb-6 mt-5 flex items-start justify-between gap-4">
                       <div>
@@ -749,10 +749,7 @@ function BranchSection() {
                       </div>
                       <iconify-icon icon="solar:buildings-2-linear" className="shrink-0 text-2xl text-champagne" aria-hidden="true"></iconify-icon>
                     </div>
-                    <div className="mt-auto flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                      <span className="rounded-full border border-champagne/30 bg-champagne/10 px-3 py-1 text-sm font-bold text-pearl">
-                        {group.priceText}
-                      </span>
+                    <div className="mt-auto flex flex-row items-center justify-end">
                       <a
                         href={NAVER_FORM_URL}
                         target="_blank"
@@ -819,9 +816,6 @@ function FAQSection() {
         <div className="grid gap-10 md:grid-cols-[0.8fr_1.2fr] md:gap-14">
           <div>
             <SectionHeading kicker="FAQ" title="자주 묻는 질문" align="left" />
-            <Reveal className="hidden md:block">
-              <GhostButton href={NAVER_FORM_URL}>이벤트 바로 신청</GhostButton>
-            </Reveal>
           </div>
           <div className="grid gap-3">
             {faqs.map((faq, index) => (
@@ -837,11 +831,6 @@ function FAQSection() {
                 </article>
               </Reveal>
             ))}
-            <Reveal className="mt-4 text-center md:hidden">
-              <GoldButton href={NAVER_FORM_URL} className="w-full">
-                이벤트 바로 신청
-              </GoldButton>
-            </Reveal>
           </div>
         </div>
       </div>
@@ -855,7 +844,6 @@ function FAQSection() {
  */
 function ConsultSection() {
   const highlights = [
-    { label: "헬스 월 3만원대", sub: "14주년 한정 특별가" },
     { label: "리뷰 작성 시 SPT 2회", sub: "서비스 PT 무료 제공" },
     { label: "참여 지점 혜택 안내", sub: "지점별 정확한 혜택 상담" },
   ];
@@ -903,10 +891,6 @@ function ConsultSection() {
                   <p className="keep-words text-3xl font-black text-white md:text-4xl">
                     1년에 딱 한 번, <span className="gold-text">단 2주간</span>
                   </p>
-                  <p className="keep-words mt-2 text-5xl font-black md:text-6xl">
-                    <span className="gold-text">헬스 월 3만원대</span>
-                  </p>
-
                   {/* 안내 문구 */}
                   <p className="mt-5 text-base leading-7 text-zinc-300">
                     네이버폼에서 이름, 연락처, 상담 희망 지점을 남겨주시면{" "}
@@ -1009,7 +993,6 @@ function App() {
       <FAQSection />
       <ConsultSection />
       <Footer />
-      <StickyCTA />
     </main>
   );
 }
