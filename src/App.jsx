@@ -40,8 +40,8 @@ const images = {
 // UI 삽입 이미지 (혜택 카드 배경 / 섹션 배경)
 // ──────────────────────────────────────────────────────────
 const uiImages = {
-  healthMonthly: assetUrl("/assets/benefit-card-health-monthly-30000.png"),
-  branchPrice: assetUrl("/assets/benefit-card-branch-price.png"),
+  healthMonthly: assetUrl("/assets/benefit-card-health-monthly-399000.png"),
+  branchPrice: assetUrl("/assets/benefit-card-branch-price-different.png"),
   anniversaryBenefit: assetUrl("/assets/anniversary-benefit-section-bg.png"),
 };
 
@@ -404,39 +404,28 @@ function BenefitsSection() {
           title="14주년 고객감사제 혜택"
           description="진주·사천·거제·삼천포·고성 참여 지점 혜택을 가까운 브랜드에서 확인하세요."
         />
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {benefits.map((benefit) => {
+        {/* 완성형 포스터 카드 2장 — 2열 그리드 */}
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+          {benefits.filter((b) => b.bgImage).map((benefit) => (
+            <article
+              key={benefit.title}
+              className="group overflow-hidden rounded-[32px] border border-champagne/35 bg-black transition duration-300 hover:-translate-y-1 hover:border-champagne/60 hover:shadow-gold-soft"
+            >
+              <img
+                src={benefit.bgImage}
+                alt={benefit.title}
+                loading="lazy"
+                className="h-full min-h-[360px] w-full object-cover object-center transition-transform duration-500 group-hover:scale-[1.02] sm:min-h-[420px]"
+                onError={(e) => { e.currentTarget.style.display = "none"; }}
+              />
+            </article>
+          ))}
+        </div>
+
+        {/* 일반 혜택 카드 (SPT 제공 / 참여 지점) */}
+        <div className="mt-5 grid gap-4 sm:grid-cols-2">
+          {benefits.filter((b) => !b.bgImage).map((benefit) => {
             const Icon = benefit.icon;
-
-            /* 배경 이미지 카드 (헬스 월 3만원대 / 지점별 가격 상이) */
-            if (benefit.bgImage) {
-              return (
-                <article
-                  key={benefit.title}
-                  className="group relative min-h-[280px] overflow-hidden rounded-[24px] border border-champagne/35 bg-zinc-950 transition duration-300 hover:-translate-y-1 hover:border-champagne/60 sm:min-h-[300px] lg:min-h-[320px]"
-                >
-                  <img
-                    src={benefit.bgImage}
-                    alt={benefit.title}
-                    loading="lazy"
-                    className="absolute inset-0 h-full w-full object-cover object-center opacity-80 transition-transform duration-500 group-hover:scale-[1.04]"
-                    onError={(e) => { e.currentTarget.style.display = "none"; }}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-black/30" />
-                  <div className="relative z-10 flex h-full flex-col justify-end p-5">
-                    <div className="mb-3 grid h-10 w-10 place-items-center rounded-xl bg-champagne/15 text-champagne">
-                      <Icon className="h-5 w-5" />
-                    </div>
-                    <h3 className="keep-words text-xl font-black leading-tight text-white">
-                      {benefit.title}
-                    </h3>
-                    <p className="mt-2 text-sm font-semibold text-zinc-300">{benefit.description}</p>
-                  </div>
-                </article>
-              );
-            }
-
-            /* 일반 카드 (SPT 제공 / 참여 지점) */
             return (
               <article
                 key={benefit.title}
