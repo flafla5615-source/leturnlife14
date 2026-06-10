@@ -36,6 +36,15 @@ const images = {
   gallery3: assetUrl("/assets/01_weight_zone_machine_area.png"),
 };
 
+// ──────────────────────────────────────────────────────────
+// UI 삽입 이미지 (혜택 카드 배경 / 섹션 배경)
+// ──────────────────────────────────────────────────────────
+const uiImages = {
+  healthMonthly: assetUrl("/assets/benefit-card-health-monthly-30000.png"),
+  branchPrice: assetUrl("/assets/benefit-card-branch-price.png"),
+  anniversaryBenefit: assetUrl("/assets/anniversary-benefit-section-bg.png"),
+};
+
 // 갤러리 섹션 토글 — 실제 지점 사진이 있으므로 활성화
 const SHOW_GALLERY = true;
 
@@ -81,12 +90,14 @@ const benefits = [
     title: "헬스 월 3만원대",
     description: "14주년 기념 단 2주간 특별 혜택",
     image: null,
+    bgImage: uiImages.healthMonthly,
   },
   {
     icon: BadgeCheck,
     title: "지점별 가격 상이",
     description: "지점별 문의 필수",
     image: null,
+    bgImage: uiImages.branchPrice,
   },
   {
     icon: Gift,
@@ -302,11 +313,11 @@ function HeroSection() {
         <div className="relative mx-auto w-full max-w-[430px]">
           <div className="absolute inset-6 rounded-full bg-champagne/20 blur-3xl" />
           <ImageCard
-            src={images.hero}
-            alt="리턴라이프컴퍼니 헬스장 내부"
+            src={uiImages.anniversaryBenefit}
+            alt="리턴라이프컴퍼니 14주년 고객감사제 혜택"
             loading="eager"
             className="h-[560px] rounded-[28px] shadow-gold"
-            overlayClassName="bg-gradient-to-t from-black/88 via-black/55 to-black/25"
+            overlayClassName="bg-black/40"
           >
             <div className="flex h-full flex-col justify-between p-6 md:p-8">
               <div>
@@ -396,12 +407,41 @@ function BenefitsSection() {
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {benefits.map((benefit) => {
             const Icon = benefit.icon;
+
+            /* 배경 이미지 카드 (헬스 월 3만원대 / 지점별 가격 상이) */
+            if (benefit.bgImage) {
+              return (
+                <article
+                  key={benefit.title}
+                  className="group relative min-h-[280px] overflow-hidden rounded-[24px] border border-champagne/35 bg-zinc-950 transition duration-300 hover:-translate-y-1 hover:border-champagne/60 sm:min-h-[300px] lg:min-h-[320px]"
+                >
+                  <img
+                    src={benefit.bgImage}
+                    alt={benefit.title}
+                    loading="lazy"
+                    className="absolute inset-0 h-full w-full object-cover object-center opacity-80 transition-transform duration-500 group-hover:scale-[1.04]"
+                    onError={(e) => { e.currentTarget.style.display = "none"; }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-black/30" />
+                  <div className="relative z-10 flex h-full flex-col justify-end p-5">
+                    <div className="mb-3 grid h-10 w-10 place-items-center rounded-xl bg-champagne/15 text-champagne">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <h3 className="keep-words text-xl font-black leading-tight text-white">
+                      {benefit.title}
+                    </h3>
+                    <p className="mt-2 text-sm font-semibold text-zinc-300">{benefit.description}</p>
+                  </div>
+                </article>
+              );
+            }
+
+            /* 일반 카드 (SPT 제공 / 참여 지점) */
             return (
               <article
                 key={benefit.title}
                 className="glass-card group overflow-hidden rounded-[24px] transition duration-300 hover:-translate-y-1 hover:border-champagne/60"
               >
-                {/* SPT / 참여 지점 카드에만 이미지 썸네일 */}
                 {benefit.image ? (
                   <div className="relative h-[130px] overflow-hidden">
                     <img
