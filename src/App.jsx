@@ -18,9 +18,9 @@ import {
 
 const assetUrl = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, "")}`;
 
-// ──────────────────────────────────────────────────────────
-// 네이버폼 링크
-// ──────────────────────────────────────────────────────────
+// ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// ë¤ì´ë²í¼ ë§í¬
+// ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 const NAVER_FORM_URL = "https://naver.me/xYNbjjGC";
 
 const images = {
@@ -36,79 +36,79 @@ const images = {
   gallery3: assetUrl("/assets/01_weight_zone_machine_area.png"),
 };
 
-// ──────────────────────────────────────────────────────────
-// UI 삽입 이미지 (혜택 카드 배경 / 섹션 배경)
-// ──────────────────────────────────────────────────────────
+// ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// UI ì½ì ì´ë¯¸ì§ (íí ì¹´ë ë°°ê²½ / ì¹ì ë°°ê²½)
+// ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 const uiImages = {
   healthMonthly: assetUrl("/assets/benefit-card-health-monthly-399000.png"),
   branchPrice: assetUrl("/assets/benefit-card-branch-price-different.png"),
   anniversaryBenefit: assetUrl("/assets/anniversary-benefit-section-bg.png"),
 };
 
-// 갤러리 섹션 토글 — 실제 지점 사진이 있으므로 활성화
+// ê°¤ë¬ë¦¬ ì¹ì í ê¸ â ì¤ì  ì§ì  ì¬ì§ì´ ìì¼ë¯ë¡ íì±í
 const SHOW_GALLERY = true;
 
 const branchGroups = [
   {
     id: "oldgym",
-    brand: "올드짐",
-    title: "진주·사천·거제 올드짐",
-    description: "올드짐 참여 지점 혜택 확인",
-    priceText: "헬스 월 3만원대",
-    note: "지점별 가격 및 혜택은 상이할 수 있습니다.",
+    brand: "ì¬ëì§",
+    title: "ì§ì£¼Â·ì¬ì²Â·ê±°ì  ì¬ëì§",
+    description: "ì¬ëì§ ì°¸ì¬ ì§ì  íí íì¸",
+    priceText: "í¬ì¤ ì 3ë§ìë",
+    note: "ì§ì ë³ ê°ê²© ë° ííì ìì´í  ì ììµëë¤.",
     image: images.oldgym,
-    branches: ["평거점", "하대점", "사천점", "상동점", "아주점", "수월점"],
+    branches: ["íê±°ì ", "íëì ", "ì¬ì²ì ", "ìëì ", "ìì£¼ì ", "ììì "],
   },
   {
     id: "musclefactory24",
-    brand: "머슬팩토리24",
-    title: "진주·사천·삼천포·고성 머슬팩토리24",
-    description: "머슬팩토리24 참여 지점 혜택 확인",
-    priceText: "헬스 월 3만원대",
-    note: "지점별 가격 및 혜택은 상이할 수 있습니다.",
+    brand: "ë¨¸ì¬í©í ë¦¬24",
+    title: "ì§ì£¼Â·ì¬ì²Â·ì¼ì²í¬Â·ê³ ì± ë¨¸ì¬í©í ë¦¬24",
+    description: "ë¨¸ì¬í©í ë¦¬24 ì°¸ì¬ ì§ì  íí íì¸",
+    priceText: "í¬ì¤ ì 3ë§ìë",
+    note: "ì§ì ë³ ê°ê²© ë° ííì ìì´í  ì ììµëë¤.",
     image: images.musclefactory,
     branches: [
-      "보건대점", "호탄점", "신진주점", "하대점", "정촌점",
-      "사천본점", "삼천포벌리점", "사천터미널점", "고성점",
+      "ë³´ê±´ëì ", "í¸íì ", "ì ì§ì£¼ì ", "íëì ", "ì ì´ì ",
+      "ì¬ì²ë³¸ì ", "ì¼ì²í¬ë²ë¦¬ì ", "ì¬ì²í°ë¯¸ëì ", "ê³ ì±ì ",
     ],
   },
   {
     id: "urbangym",
-    brand: "어반짐",
-    title: "진주 어반짐",
-    description: "어반짐 참여 지점 혜택 확인",
-    priceText: "헬스 월 3만원대",
-    note: "지점별 가격 및 혜택은 상이할 수 있습니다.",
+    brand: "ì´ë°ì§",
+    title: "ì§ì£¼ ì´ë°ì§",
+    description: "ì´ë°ì§ ì°¸ì¬ ì§ì  íí íì¸",
+    priceText: "í¬ì¤ ì 3ë§ìë",
+    note: "ì§ì ë³ ê°ê²© ë° ííì ìì´í  ì ììµëë¤.",
     image: images.urbangym,
-    branches: ["진주평거점"],
+    branches: ["ì§ì£¼íê±°ì "],
   },
 ];
 
 const benefits = [
   {
     icon: WalletCards,
-    title: "헬스 월 3만원대",
-    description: "14주년 기념 단 2주간 특별 혜택",
+    title: "í¬ì¤ ì 3ë§ìë",
+    description: "14ì£¼ë ê¸°ë ë¨ 2ì£¼ê° í¹ë³ íí",
     image: null,
     bgImage: uiImages.healthMonthly,
   },
   {
     icon: BadgeCheck,
-    title: "지점별 가격 상이",
-    description: "지점별 문의 필수",
+    title: "ì§ì ë³ ê°ê²© ìì´",
+    description: "ì§ì ë³ ë¬¸ì íì",
     image: null,
     bgImage: uiImages.branchPrice,
   },
   {
     icon: Gift,
-    title: "리뷰 작성 시 SPT(서비스 PT) 2회 제공",
-    description: "서비스 PT 혜택",
+    title: "ë¦¬ë·° ìì± ì SPT(ìë¹ì¤ PT) 2í ì ê³µ",
+    description: "ìë¹ì¤ PT íí",
     image: assetUrl("/assets/spt-benefit-card-replacement.png"),
   },
   {
     icon: MapPin,
-    title: "참여 지점 혜택",
-    description: "진주·사천·거제·삼천포·고성",
+    title: "ì°¸ì¬ ì§ì  íí",
+    description: "ì§ì£¼Â·ì¬ì²Â·ê±°ì Â·ì¼ì²í¬Â·ê³ ì±",
     image: images.cardioZone,
   },
 ];
@@ -116,43 +116,43 @@ const benefits = [
 const brandCards = [
   {
     english: "OLD GYM",
-    korean: "올드짐",
-    line: "클래식한 트레이닝 감도",
+    korean: "ì¬ëì§",
+    line: "í´ëìí í¸ë ì´ë ê°ë",
     image: images.oldgym,
   },
   {
     english: "URBAN GYM",
-    korean: "어반짐",
-    line: "도심형 프리미엄 피트니스",
+    korean: "ì´ë°ì§",
+    line: "ëì¬í íë¦¬ë¯¸ì í¼í¸ëì¤",
     image: images.urbangym,
   },
   {
     english: "MUSCLE FACTORY 24",
-    korean: "머슬팩토리24",
-    line: "24시간 운동 루틴",
+    korean: "ë¨¸ì¬í©í ë¦¬24",
+    line: "24ìê° ì´ë ë£¨í´",
     image: images.musclefactory,
   },
 ];
 
 const galleryItems = [
-  { src: images.gallery1, title: "넓고 깔끔한 운동 환경", caption: "실제 공간" },
-  { src: images.gallery2, title: "쾌적한 유산소존", caption: "Cardio Zone" },
-  { src: images.gallery3, title: "프리미엄 웨이트존", caption: "Weight Zone" },
+  { src: images.gallery1, title: "ëê³  ê¹ëí ì´ë íê²½", caption: "ì¤ì  ê³µê°" },
+  { src: images.gallery2, title: "ì¾ì í ì ì°ìì¡´", caption: "Cardio Zone" },
+  { src: images.gallery3, title: "íë¦¬ë¯¸ì ì¨ì´í¸ì¡´", caption: "Weight Zone" },
 ];
 
 const faqs = [
   {
-    question: "모든 지점 가격이 동일한가요?",
-    answer: "지점별 운영 상황에 따라 가격은 상이할 수 있습니다.",
+    question: "ëª¨ë  ì§ì  ê°ê²©ì´ ëì¼íê°ì?",
+    answer: "ì§ì ë³ ì´ì ìí©ì ë°ë¼ ê°ê²©ì ìì´í  ì ììµëë¤.",
   },
   {
-    question: "SPT는 무엇인가요?",
-    answer: "SPT는 서비스 PT로, 리뷰 작성 고객에게 2회 제공됩니다.",
+    question: "SPTë ë¬´ìì¸ê°ì?",
+    answer: "SPTë ìë¹ì¤ PTë¡, ë¦¬ë·° ìì± ê³ ê°ìê² 2í ì ê³µë©ëë¤.",
   },
   {
-    question: "어느 지점이 참여하나요?",
+    question: "ì´ë ì§ì ì´ ì°¸ì¬íëì?",
     answer:
-      "진주·사천·거제 올드짐, 진주·사천·삼천포·고성 머슬팩토리24, 진주 어반짐 참여 지점이 함께합니다.",
+      "ì§ì£¼Â·ì¬ì²Â·ê±°ì  ì¬ëì§, ì§ì£¼Â·ì¬ì²Â·ì¼ì²í¬Â·ê³ ì± ë¨¸ì¬í©í ë¦¬24, ì§ì£¼ ì´ë°ì§ ì°¸ì¬ ì§ì ì´ í¨ê»í©ëë¤.",
   },
 ];
 
@@ -168,7 +168,7 @@ function SectionHeading({ kicker, title, description }) {
   return (
     <div className="mx-auto mb-8 max-w-2xl text-center md:mb-12">
       <p className="mb-3 text-sm font-semibold uppercase tracking-[0.22em] text-champagne">{kicker}</p>
-      <h2 className="keep-words text-3xl font-black leading-tight text-white md:text-5xl">{title}</h2>
+      <h2 className="keep-words text-[36px] font-black leading-[1.07] tracking-[-0.03em] text-white sm:text-5xl md:text-6xl xl:text-7xl">{title}</h2>
       {description && (
         <p className="keep-words mt-4 text-base leading-7 text-zinc-300 md:text-lg">{description}</p>
       )}
@@ -177,7 +177,7 @@ function SectionHeading({ kicker, title, description }) {
 }
 
 /**
- * ImageCard — 실제 사진을 dark overlay + gold border 카드로 감쌈.
+ * ImageCard â ì¤ì  ì¬ì§ì dark overlay + gold border ì¹´ëë¡ ê°ì.
  */
 function ImageCard({
   src,
@@ -207,7 +207,7 @@ function ImageCard({
 }
 
 /**
- * BrandThumbnail — 카드 상단 썸네일. hover 시 살짝 scale.
+ * BrandThumbnail â ì¹´ë ìë¨ ì¸ë¤ì¼. hover ì ì´ì§ scale.
  */
 function BrandThumbnail({ src, alt, label, subLabel, height = "h-[180px]" }) {
   return (
@@ -249,10 +249,10 @@ function GoldButton({ children, className = "", onClick, type = "button" }) {
 
 function HeroSection() {
   return (
-    <header className="relative min-h-[92vh] overflow-hidden bg-dark-radial pb-24 pt-6 md:min-h-[760px] md:pb-28">
-      {/* 배경 glow */}
+    <header className="relative overflow-hidden bg-dark-radial pb-16 pt-6 md:min-h-[760px] md:pb-28">
+      {/* ë°°ê²½ glow */}
       <div className="absolute left-1/2 top-20 h-72 w-72 -translate-x-1/2 rounded-full bg-champagne/10 blur-3xl md:h-[32rem] md:w-[32rem]" />
-      {/* 골드 "14" 장식 */}
+      {/* ê³¨ë "14" ì¥ì */}
       <div className="absolute right-[-7rem] top-28 hidden select-none text-[25rem] font-black leading-none text-champagne/[0.07] md:block">
         14
       </div>
@@ -274,24 +274,24 @@ function HeroSection() {
         </div>
       </nav>
 
-      <div className="section-shell relative z-10 grid gap-10 pt-16 md:grid-cols-[1.08fr_0.92fr] md:items-center md:pt-24">
-        {/* 왼쪽: 핵심 카피 */}
+      <div className="section-shell relative z-10 grid gap-10 pt-10 md:grid-cols-[1.08fr_0.92fr] md:items-center md:pt-24">
+        {/* ì¼ìª½: íµì¬ ì¹´í¼ */}
         <div>
           <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-champagne/35 bg-champagne/10 px-4 py-2 text-sm font-bold text-pearl shadow-gold-soft">
             <Trophy className="h-4 w-4 text-softgold" />
-            리턴라이프컴퍼니 14주년 고객감사제
+            ë¦¬í´ë¼ì´íì»´í¼ë 14ì£¼ë ê³ ê°ê°ì¬ì 
           </div>
           <h1 className="keep-words text-4xl font-black leading-[1.08] text-white sm:text-5xl md:text-6xl xl:text-7xl">
-            1년에 딱 한 번, 단 2주간
-            <span className="mt-2 block gold-text">헬스 월 3만원대 이벤트</span>
+            1ëì ë± í ë², ë¨ 2ì£¼ê°
+            <span className="mt-2 block gold-text">í¬ì¤ ì 3ë§ìë ì´ë²¤í¸</span>
           </h1>
           <p className="keep-words mt-6 max-w-xl text-lg leading-8 text-zinc-300 md:text-xl">
-            올드짐 · 머슬팩토리24 · 어반짐 참여 지점 혜택.
-            진주 · 사천 · 거제 · 삼천포 · 고성 혜택 적용.
+            ì¬ëì§ Â· ë¨¸ì¬í©í ë¦¬24 Â· ì´ë°ì§ ì°¸ì¬ ì§ì  íí.
+            ì§ì£¼ Â· ì¬ì² Â· ê±°ì  Â· ì¼ì²í¬ Â· ê³ ì± íí ì ì©.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
             <GoldButton onClick={scrollToBranches} className="w-full sm:w-auto">
-              가까운 지점 혜택 확인하기
+              ê°ê¹ì´ ì§ì  íí íì¸íê¸°
             </GoldButton>
             <a
               href={NAVER_FORM_URL}
@@ -299,24 +299,24 @@ function HeroSection() {
               rel="noopener noreferrer"
               className="group inline-flex min-h-14 w-full items-center justify-center gap-2 rounded-2xl border border-champagne/45 px-6 py-3 text-base font-extrabold text-champagne transition duration-300 hover:bg-champagne hover:text-black sm:w-auto"
             >
-              빠른 상담 신청
+              ë¹ ë¥¸ ìë´ ì ì²­
               <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
             </a>
             <p className="flex items-center justify-center gap-2 text-sm font-semibold text-zinc-300 sm:justify-start">
               <ShieldCheck className="h-4 w-4 text-champagne" />
-              지점별 가격 및 혜택은 상이할 수 있습니다.
+              ì§ì ë³ ê°ê²© ë° ííì ìì´í  ì ììµëë¤.
             </p>
           </div>
         </div>
 
-        {/* 오른쪽: 실제 헬스장 사진 카드 */}
+        {/* ì¤ë¥¸ìª½: ì¤ì  í¬ì¤ì¥ ì¬ì§ ì¹´ë */}
         <div className="relative mx-auto w-full max-w-[430px]">
           <div className="absolute inset-6 rounded-full bg-champagne/20 blur-3xl" />
           <ImageCard
             src={uiImages.anniversaryBenefit}
-            alt="리턴라이프컴퍼니 14주년 고객감사제 혜택"
+            alt="ë¦¬í´ë¼ì´íì»´í¼ë 14ì£¼ë ê³ ê°ê°ì¬ì  íí"
             loading="eager"
-            className="h-[560px] rounded-[28px] shadow-gold"
+            className="h-[280px] rounded-[24px] shadow-gold sm:h-[420px] md:h-[560px] md:rounded-[28px]"
             overlayClassName="bg-black/40"
           >
             <div className="flex h-full flex-col justify-between p-6 md:p-8">
@@ -329,18 +329,18 @@ function HeroSection() {
                 </div>
               </div>
               <div>
-                <p className="keep-words text-xl font-black text-zinc-100 md:text-2xl">
-                  1년에 딱 한 번, 단 2주간
+                <p className="keep-words text-2xl font-black text-white md:text-3xl lg:text-4xl">
+                  1ëì ë± í ë², ë¨ 2ì£¼ê°
                 </p>
                 <p className="mt-3 gold-text text-6xl font-black tracking-normal md:text-7xl">
-                  <span className="block text-4xl md:text-5xl">헬스 월</span>
-                  <span className="block">3만원대</span>
+                  <span className="block text-4xl md:text-5xl">í¬ì¤ ì</span>
+                  <span className="block">3ë§ìë</span>
                 </p>
                 <p className="mt-4 text-base leading-7 text-zinc-300">
-                  리뷰 작성 고객에게 SPT(서비스 PT) 2회 제공
+                  ë¦¬ë·° ìì± ê³ ê°ìê² SPT(ìë¹ì¤ PT) 2í ì ê³µ
                 </p>
                 <div className="mt-6 grid grid-cols-2 gap-2">
-                  {["올드짐", "머슬팩토리24", "어반짐", "참여 지점 혜택"].map((item) => (
+                  {["ì¬ëì§", "ë¨¸ì¬í©í ë¦¬24", "ì´ë°ì§", "ì°¸ì¬ ì§ì  íí"].map((item) => (
                     <div
                       key={item}
                       className="rounded-2xl border border-white/10 bg-black/40 px-3 py-3 text-center text-sm font-bold text-pearl"
@@ -360,12 +360,12 @@ function HeroSection() {
 
 function BrandSection() {
   return (
-    <section className="relative py-20 md:py-28">
+    <section className="relative py-14 md:py-24">
       <div className="section-shell">
         <SectionHeading
           kicker="Return Life Company"
-          title="리턴라이프컴퍼니"
-          description="올드짐, 어반짐, 머슬팩토리24는 리턴라이프컴퍼니가 운영합니다."
+          title="ë¦¬í´ë¼ì´íì»´í¼ë"
+          description="ì¬ëì§, ì´ë°ì§, ë¨¸ì¬í©í ë¦¬24ë ë¦¬í´ë¼ì´íì»´í¼ëê° ì´ìí©ëë¤."
         />
         <div className="grid gap-4 md:grid-cols-3">
           {brandCards.map((brand) => (
@@ -373,10 +373,10 @@ function BrandSection() {
               key={brand.english}
               className="glass-card group overflow-hidden rounded-[24px] p-4 transition duration-300 hover:-translate-y-1 hover:border-softgold/60"
             >
-              {/* 실제 헬스장 사진 썸네일 */}
+              {/* ì¤ì  í¬ì¤ì¥ ì¬ì§ ì¸ë¤ì¼ */}
               <BrandThumbnail
                 src={brand.image}
-                alt={`${brand.korean} 시설 사진`}
+                alt={`${brand.korean} ìì¤ ì¬ì§`}
                 label={brand.english}
                 height="h-[180px]"
               />
@@ -397,14 +397,14 @@ function BrandSection() {
 
 function BenefitsSection() {
   return (
-    <section className="bg-graphite/50 py-20 md:py-28">
+    <section className="bg-graphite/50 py-14 md:py-24">
       <div className="section-shell">
         <SectionHeading
           kicker="Special Benefits"
-          title="14주년 고객감사제 혜택"
-          description="진주·사천·거제·삼천포·고성 참여 지점 혜택을 가까운 브랜드에서 확인하세요."
+          title="14ì£¼ë ê³ ê°ê°ì¬ì  íí"
+          description="ì§ì£¼Â·ì¬ì²Â·ê±°ì Â·ì¼ì²í¬Â·ê³ ì± ì°¸ì¬ ì§ì  ííì ê°ê¹ì´ ë¸ëëìì íì¸íì¸ì."
         />
-        {/* 완성형 포스터 카드 2장 — 2열 그리드 */}
+        {/* ìì±í í¬ì¤í° ì¹´ë 2ì¥ â 2ì´ ê·¸ë¦¬ë */}
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
           {benefits.filter((b) => b.bgImage).map((benefit) => (
             <article
@@ -422,7 +422,7 @@ function BenefitsSection() {
           ))}
         </div>
 
-        {/* 일반 혜택 카드 (SPT 제공 / 참여 지점) */}
+        {/* ì¼ë° íí ì¹´ë (SPT ì ê³µ / ì°¸ì¬ ì§ì ) */}
         <div className="mt-5 grid gap-4 sm:grid-cols-2">
           {benefits.filter((b) => !b.bgImage).map((benefit) => {
             const Icon = benefit.icon;
@@ -432,7 +432,7 @@ function BenefitsSection() {
                 className="glass-card group overflow-hidden rounded-[24px] transition duration-300 hover:-translate-y-1 hover:border-champagne/60"
               >
                 {benefit.image ? (
-                  <div className="relative h-[130px] overflow-hidden">
+                  <div className="relative h-36 overflow-hidden md:h-52">
                     <img
                       src={benefit.image}
                       alt={benefit.title}
@@ -457,8 +457,8 @@ function BenefitsSection() {
           })}
         </div>
         <p className="mt-6 text-center text-sm font-semibold text-zinc-400">
-          지점별 가격 및 혜택은 상이할 수 있습니다.
-          <span className="mt-2 block">정확한 가격과 혜택은 상담 시 안내됩니다.</span>
+          ì§ì ë³ ê°ê²© ë° ííì ìì´í  ì ììµëë¤.
+          <span className="mt-2 block">ì íí ê°ê²©ê³¼ ííì ìë´ ì ìë´ë©ëë¤.</span>
         </p>
         <div className="mt-6 text-center">
           <a
@@ -467,7 +467,7 @@ function BenefitsSection() {
             rel="noopener noreferrer"
             className="group inline-flex items-center gap-2 rounded-2xl bg-gold-gradient px-8 py-4 text-base font-extrabold text-black shadow-gold transition duration-300 hover:-translate-y-0.5 hover:shadow-gold-soft"
           >
-            혜택 받고 상담 신청하기
+            íí ë°ê³  ìë´ ì ì²­íê¸°
             <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
           </a>
         </div>
@@ -478,14 +478,14 @@ function BenefitsSection() {
 
 function GallerySection() {
   return (
-    <section className="py-20 md:py-28">
+    <section className="py-14 md:py-24">
       <div className="section-shell">
         <SectionHeading
           kicker="Premium Space"
-          title="리턴라이프컴퍼니가 운영하는 피트니스 공간"
-          description="실제 공간 사진으로 참여 지점의 운동 환경을 확인해보세요."
+          title="ë¦¬í´ë¼ì´íì»´í¼ëê° ì´ìíë í¼í¸ëì¤ ê³µê°"
+          description="ì¤ì  ê³µê° ì¬ì§ì¼ë¡ ì°¸ì¬ ì§ì ì ì´ë íê²½ì íì¸í´ë³´ì¸ì."
         />
-        {/* 모바일: 1열, PC: 3열 */}
+        {/* ëª¨ë°ì¼: 1ì´, PC: 3ì´ */}
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {galleryItems.map((item) => (
             <ImageCard
@@ -514,12 +514,12 @@ function BranchSection() {
   const selectedGroup = branchGroups.find((g) => g.id === activeGroup) ?? branchGroups[0];
 
   return (
-    <section id="branches" className="py-20 md:py-28">
+    <section id="branches" className="py-14 md:py-24">
       <div className="section-shell">
         <SectionHeading
           kicker="Branches"
-          title="참여 브랜드 / 지점 선택"
-          description="브랜드 카드를 눌러 이번 14주년 고객감사제 참여 지점을 확인해보세요."
+          title="ì°¸ì¬ ë¸ëë / ì§ì  ì í"
+          description="ë¸ëë ì¹´ëë¥¼ ëë¬ ì´ë² 14ì£¼ë ê³ ê°ê°ì¬ì  ì°¸ì¬ ì§ì ì íì¸í´ë³´ì¸ì."
         />
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {branchGroups.map((group) => {
@@ -535,11 +535,11 @@ function BranchSection() {
                 }}
                 className={`glass-card group flex min-h-[240px] flex-col rounded-[24px] p-5 text-left transition duration-300 hover:-translate-y-1 ${isActive ? "branch-card-active" : ""}`}
               >
-                {/* 실제 사진 썸네일 */}
+                {/* ì¤ì  ì¬ì§ ì¸ë¤ì¼ */}
                 <BrandThumbnail
                   src={group.image}
                   alt={group.title}
-                  subLabel={`${group.branches.length}개 지점`}
+                  subLabel={`${group.branches.length}ê° ì§ì `}
                   height="h-[110px]"
                 />
                 <div className="mb-6 mt-5 flex items-start justify-between gap-4">
@@ -554,7 +554,7 @@ function BranchSection() {
                   <span className="rounded-full border border-champagne/30 bg-champagne/10 px-3 py-1 text-sm font-bold text-pearl">
                     {group.priceText}
                   </span>
-                  {/* 네이버폼 상담 신청 */}
+                  {/* ë¤ì´ë²í¼ ìë´ ì ì²­ */}
                   <a
                     href={NAVER_FORM_URL}
                     target="_blank"
@@ -562,7 +562,7 @@ function BranchSection() {
                     onClick={(e) => e.stopPropagation()}
                     className="inline-flex items-center gap-1 rounded-full border border-champagne/45 px-4 py-2 text-sm font-extrabold text-champagne transition hover:bg-champagne hover:text-black"
                   >
-                    상담하기 <ChevronRight className="h-4 w-4" />
+                    ìë´íê¸° <ChevronRight className="h-4 w-4" />
                   </a>
                 </div>
               </article>
@@ -570,14 +570,14 @@ function BranchSection() {
           })}
         </div>
 
-        {/* 세부 지점 목록 */}
+        {/* ì¸ë¶ ì§ì  ëª©ë¡ */}
         <div className="glass-card mt-5 rounded-[24px] p-5 md:p-6">
           <div className="mb-5 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="text-sm font-bold text-champagne">참여 지점</p>
+              <p className="text-sm font-bold text-champagne">ì°¸ì¬ ì§ì </p>
               <h3 className="keep-words mt-2 text-2xl font-black text-white">{selectedGroup.title}</h3>
               <p className="mt-2 text-sm font-semibold leading-6 text-zinc-400">
-                아래 지점들이 이번 14주년 고객감사제에 참여합니다.
+                ìë ì§ì ë¤ì´ ì´ë² 14ì£¼ë ê³ ê°ê°ì¬ì ì ì°¸ì¬í©ëë¤.
               </p>
             </div>
             <p className="text-sm font-bold text-pearl">{selectedGroup.note}</p>
@@ -595,8 +595,8 @@ function BranchSection() {
           </div>
         </div>
         <p className="mt-6 text-center text-sm font-semibold text-zinc-400">
-          지점별 가격 및 혜택은 상이할 수 있습니다.
-          <span className="mt-2 block">정확한 가격과 혜택은 상담 시 안내됩니다.</span>
+          ì§ì ë³ ê°ê²© ë° ííì ìì´í  ì ììµëë¤.
+          <span className="mt-2 block">ì íí ê°ê²©ê³¼ ííì ìë´ ì ìë´ë©ëë¤.</span>
         </p>
         <div className="mt-6 text-center">
           <a
@@ -605,7 +605,7 @@ function BranchSection() {
             rel="noopener noreferrer"
             className="group inline-flex items-center gap-2 rounded-2xl bg-gold-gradient px-8 py-4 text-base font-extrabold text-black shadow-gold transition duration-300 hover:-translate-y-0.5 hover:shadow-gold-soft"
           >
-            상담 신청하기
+            ìë´ ì ì²­íê¸°
             <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
           </a>
         </div>
@@ -616,17 +616,17 @@ function BranchSection() {
 
 function FAQSection() {
   return (
-    <section className="py-20 md:py-28">
+    <section className="py-14 md:py-24">
       <div className="section-shell">
-        <SectionHeading kicker="FAQ" title="자주 묻는 질문" />
-        <div className="mx-auto grid max-w-4xl gap-4">
+        <SectionHeading kicker="FAQ" title="ìì£¼ ë¬»ë ì§ë¬¸" />
+        <div className="mx-auto grid max-w-4xl gap-3">
           {faqs.map((faq) => (
-            <article key={faq.question} className="glass-card rounded-[22px] p-5">
-              <h3 className="flex items-start gap-3 text-lg font-black text-white">
+            <article key={faq.question} className="glass-card rounded-[20px] p-4 md:p-5">
+              <h3 className="flex items-start gap-3 text-base font-bold text-white md:text-lg md:font-black">
                 <MessageCircle className="mt-1 h-5 w-5 shrink-0 text-champagne" />
                 {faq.question}
               </h3>
-              <p className="mt-3 pl-8 text-base leading-7 text-zinc-300">{faq.answer}</p>
+              <p className="mt-2 pl-8 text-sm leading-relaxed text-white/65 md:text-base md:leading-7">{faq.answer}</p>
             </article>
           ))}
         </div>
@@ -637,7 +637,7 @@ function FAQSection() {
             rel="noopener noreferrer"
             className="group inline-flex items-center gap-2 rounded-2xl bg-gold-gradient px-8 py-4 text-base font-extrabold text-black shadow-gold transition duration-300 hover:-translate-y-0.5 hover:shadow-gold-soft"
           >
-            이벤트 바로 신청
+            ì´ë²¤í¸ ë°ë¡ ì ì²­
             <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
           </a>
         </div>
@@ -647,27 +647,27 @@ function FAQSection() {
 }
 
 /**
- * ConsultSection — 네이버폼 연결 상담 신청 CTA 섹션
- * 자체 폼 없이 네이버폼으로 유도하는 전환 중심 구조
+ * ConsultSection â ë¤ì´ë²í¼ ì°ê²° ìë´ ì ì²­ CTA ì¹ì
+ * ìì²´ í¼ ìì´ ë¤ì´ë²í¼ì¼ë¡ ì ëíë ì í ì¤ì¬ êµ¬ì¡°
  */
 function ConsultSection() {
   const highlights = [
-    { label: "헬스 월 3만원대", sub: "14주년 한정 특별가" },
-    { label: "리뷰 작성 시 SPT 2회", sub: "서비스 PT 무료 제공" },
-    { label: "참여 지점 혜택 안내", sub: "지점별 정확한 혜택 상담" },
+    { label: "í¬ì¤ ì 3ë§ìë", sub: "14ì£¼ë íì  í¹ë³ê°" },
+    { label: "ë¦¬ë·° ìì± ì SPT 2í", sub: "ìë¹ì¤ PT ë¬´ë£ ì ê³µ" },
+    { label: "ì°¸ì¬ ì§ì  íí ìë´", sub: "ì§ì ë³ ì íí íí ìë´" },
   ];
 
   return (
-    <section id="consult" className="bg-graphite/50 pb-32 pt-20 md:pb-40 md:pt-28">
+    <section id="consult" className="bg-graphite/50 pb-28 pt-14 md:pb-36 md:pt-24">
       <div className="section-shell">
         <SectionHeading
           kicker="Consultation"
-          title="14주년 혜택 상담 신청하기"
-          description="이름, 연락처, 희망 지점만 남기면 가까운 지점의 14주년 고객감사제 혜택을 안내해드립니다."
+          title="14ì£¼ë íí ìë´ ì ì²­íê¸°"
+          description="ì´ë¦, ì°ë½ì², í¬ë§ ì§ì ë§ ë¨ê¸°ë©´ ê°ê¹ì´ ì§ì ì 14ì£¼ë ê³ ê°ê°ì¬ì  ííì ìë´í´ëë¦½ëë¤."
         />
 
         <div className="mx-auto max-w-2xl">
-          {/* 혜택 요약 카드 3종 */}
+          {/* íí ìì½ ì¹´ë 3ì¢ */}
           <div className="mb-8 grid gap-3 sm:grid-cols-3">
             {highlights.map((h) => (
               <div
@@ -680,38 +680,38 @@ function ConsultSection() {
             ))}
           </div>
 
-          {/* 메인 CTA 카드 */}
-          <div className="glass-card relative overflow-hidden rounded-[28px] p-8 md:p-10">
-            {/* 배경 glow */}
+          {/* ë©ì¸ CTA ì¹´ë */}
+          <div className="glass-card relative overflow-hidden rounded-[24px] p-6 md:rounded-[28px] md:p-10">
+            {/* ë°°ê²½ glow */}
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-champagne/[0.06] to-transparent" />
             <div className="pointer-events-none absolute right-4 top-2 select-none text-[12rem] font-black leading-none text-champagne/[0.04]">
               14
             </div>
 
             <div className="relative z-10">
-              {/* 강조 배지 */}
+              {/* ê°ì¡° ë°°ì§ */}
               <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-champagne/35 bg-champagne/10 px-4 py-2 text-sm font-bold text-pearl">
                 <Trophy className="h-4 w-4 text-softgold" />
-                리턴라이프컴퍼니 14주년 고객감사제
+                ë¦¬í´ë¼ì´íì»´í¼ë 14ì£¼ë ê³ ê°ê°ì¬ì 
               </div>
 
-              {/* 핵심 강조 문구 */}
+              {/* íµì¬ ê°ì¡° ë¬¸êµ¬ */}
               <p className="keep-words text-3xl font-black text-white md:text-4xl">
-                1년에 딱 한 번,{" "}
-                <span className="gold-text">단 2주간</span>
+                1ëì ë± í ë²,{" "}
+                <span className="gold-text">ë¨ 2ì£¼ê°</span>
               </p>
               <p className="keep-words mt-2 text-5xl font-black md:text-6xl">
-                <span className="gold-text">헬스 월 3만원대</span>
+                <span className="gold-text">í¬ì¤ ì 3ë§ìë</span>
               </p>
 
-              {/* 안내 문구 */}
+              {/* ìë´ ë¬¸êµ¬ */}
               <p className="mt-5 text-base leading-7 text-zinc-300">
-                네이버폼에서 이름, 연락처, 상담 희망 지점을 남겨주시면{" "}
+                ë¤ì´ë²í¼ìì ì´ë¦, ì°ë½ì², ìë´ í¬ë§ ì§ì ì ë¨ê²¨ì£¼ìë©´{" "}
                 <br className="hidden sm:block" />
-                가까운 지점 담당자가 빠르게 안내해드립니다.
+                ê°ê¹ì´ ì§ì  ë´ë¹ìê° ë¹ ë¥´ê² ìë´í´ëë¦½ëë¤.
               </p>
 
-              {/* CTA 버튼 */}
+              {/* CTA ë²í¼ */}
               <div className="mt-8">
                 <a
                   href={NAVER_FORM_URL}
@@ -721,23 +721,23 @@ function ConsultSection() {
                   className="group inline-flex w-full items-center justify-center gap-3 rounded-2xl bg-gold-gradient px-6 py-5 text-lg font-extrabold text-black shadow-gold transition duration-300 hover:-translate-y-0.5 hover:shadow-gold-soft sm:w-auto sm:px-10"
                 >
                   <ExternalLink className="h-5 w-5" />
-                  네이버폼으로 상담 신청하기
+                  ë¤ì´ë²í¼ì¼ë¡ ìë´ ì ì²­íê¸°
                   <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
                 </a>
               </div>
 
-              {/* 보조 안내 */}
+              {/* ë³´ì¡° ìë´ */}
               <div className="mt-5 flex flex-col gap-1.5">
                 <p className="flex items-center gap-2 text-sm font-semibold text-zinc-400">
                   <ExternalLink className="h-3.5 w-3.5 shrink-0 text-champagne/70" />
-                  클릭 시 네이버 상담 신청폼으로 이동합니다.
+                  í´ë¦­ ì ë¤ì´ë² ìë´ ì ì²­í¼ì¼ë¡ ì´ëí©ëë¤.
                 </p>
                 <p className="flex items-center gap-2 text-sm font-semibold text-zinc-400">
                   <ShieldCheck className="h-3.5 w-3.5 shrink-0 text-champagne/70" />
-                  입력하신 정보는 상담 목적 외 사용되지 않습니다.
+                  ìë ¥íì  ì ë³´ë ìë´ ëª©ì  ì¸ ì¬ì©ëì§ ììµëë¤.
                 </p>
                 <p className="flex items-center gap-2 text-xs text-zinc-500">
-                  지점별 가격 및 혜택은 상이할 수 있으며, 정확한 내용은 상담 시 안내됩니다.
+                  ì§ì ë³ ê°ê²© ë° ííì ìì´í  ì ìì¼ë©°, ì íí ë´ì©ì ìë´ ì ìë´ë©ëë¤.
                 </p>
               </div>
             </div>
@@ -750,20 +750,21 @@ function ConsultSection() {
 
 function StickyCTA() {
   return (
-    <div className="fixed inset-x-0 bottom-0 z-50 border-t border-champagne/25 bg-black/85 px-4 py-3 backdrop-blur-xl md:hidden">
+    <div className="fixed inset-x-0 bottom-0 z-50 border-t border-champagne/25 bg-black/90 px-4 py-3.5 backdrop-blur-xl md:hidden"
+        style={{paddingBottom: 'calc(0.875rem + env(safe-area-inset-bottom))'}}>
       <div className="mx-auto flex max-w-md items-center gap-3">
         <div className="min-w-0 flex-1">
-          <p className="keep-words text-sm font-black leading-tight text-white">14주년 혜택 상담</p>
-          <p className="keep-words text-xs font-semibold text-zinc-400">네이버폼으로 빠르게 신청하기</p>
+          <p className="keep-words text-sm font-black leading-tight text-white">14ì£¼ë íí ìë´</p>
+          <p className="keep-words text-xs font-semibold text-zinc-400">ë¤ì´ë²í¼ì¼ë¡ ë¹ ë¥´ê² ì ì²­íê¸°</p>
         </div>
         <a
           href={NAVER_FORM_URL}
           target="_blank"
           rel="noopener noreferrer"
 
-          className="shrink-0 rounded-full bg-gold-gradient px-4 py-3 text-sm font-black text-black shadow-gold-soft"
+          className="shrink-0 rounded-full bg-gold-gradient px-5 py-3 text-sm font-black text-black shadow-gold-soft"
         >
-          상담 신청
+          ìë´ ì ì²­
         </a>
       </div>
     </div>
