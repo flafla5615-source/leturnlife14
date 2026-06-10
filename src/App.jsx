@@ -19,7 +19,7 @@ import {
 const assetUrl = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, "")}`;
 
 // ──────────────────────────────────────────────────────────
-// 네이버폼 링크 — 폼 생성 후 아래 URL을 교체하세요
+// 네이버폼 링크
 // ──────────────────────────────────────────────────────────
 const NAVER_FORM_URL = "https://naver.me/xYNbjjGC";
 
@@ -278,10 +278,19 @@ function HeroSection() {
             올드짐 · 머슬팩토리24 · 어반짐 참여 지점 혜택.
             진주 · 사천 · 거제 · 삼천포 · 고성 혜택 적용.
           </p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
             <GoldButton onClick={scrollToBranches} className="w-full sm:w-auto">
               가까운 지점 혜택 확인하기
             </GoldButton>
+            <a
+              href={NAVER_FORM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex min-h-14 w-full items-center justify-center gap-2 rounded-2xl border border-champagne/45 px-6 py-3 text-base font-extrabold text-champagne transition duration-300 hover:bg-champagne hover:text-black sm:w-auto"
+            >
+              빠른 상담 신청
+              <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+            </a>
             <p className="flex items-center justify-center gap-2 text-sm font-semibold text-zinc-300 sm:justify-start">
               <ShieldCheck className="h-4 w-4 text-champagne" />
               지점별 가격 및 혜택은 상이할 수 있습니다.
@@ -422,6 +431,17 @@ function BenefitsSection() {
           지점별 가격 및 혜택은 상이할 수 있습니다.
           <span className="mt-2 block">정확한 가격과 혜택은 상담 시 안내됩니다.</span>
         </p>
+        <div className="mt-6 text-center">
+          <a
+            href={NAVER_FORM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-2 rounded-2xl bg-gold-gradient px-8 py-4 text-base font-extrabold text-black shadow-gold transition duration-300 hover:-translate-y-0.5 hover:shadow-gold-soft"
+          >
+            혜택 받고 상담 신청하기
+            <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+          </a>
+        </div>
       </div>
     </section>
   );
@@ -505,14 +525,16 @@ function BranchSection() {
                   <span className="rounded-full border border-champagne/30 bg-champagne/10 px-3 py-1 text-sm font-bold text-pearl">
                     {group.priceText}
                   </span>
-                  {/* 상담 신청 섹션으로 스크롤 */}
-                  <button
-                    type="button"
-                    onClick={(e) => { e.stopPropagation(); scrollToConsult(); }}
+                  {/* 네이버폼 상담 신청 */}
+                  <a
+                    href={NAVER_FORM_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
                     className="inline-flex items-center gap-1 rounded-full border border-champagne/45 px-4 py-2 text-sm font-extrabold text-champagne transition hover:bg-champagne hover:text-black"
                   >
-                    상담 신청 <ChevronRight className="h-4 w-4" />
-                  </button>
+                    상담하기 <ChevronRight className="h-4 w-4" />
+                  </a>
                 </div>
               </article>
             );
@@ -547,6 +569,17 @@ function BranchSection() {
           지점별 가격 및 혜택은 상이할 수 있습니다.
           <span className="mt-2 block">정확한 가격과 혜택은 상담 시 안내됩니다.</span>
         </p>
+        <div className="mt-6 text-center">
+          <a
+            href={NAVER_FORM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-2 rounded-2xl bg-gold-gradient px-8 py-4 text-base font-extrabold text-black shadow-gold transition duration-300 hover:-translate-y-0.5 hover:shadow-gold-soft"
+          >
+            상담 신청하기
+            <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+          </a>
+        </div>
       </div>
     </section>
   );
@@ -567,6 +600,17 @@ function FAQSection() {
               <p className="mt-3 pl-8 text-base leading-7 text-zinc-300">{faq.answer}</p>
             </article>
           ))}
+        </div>
+        <div className="mt-10 text-center">
+          <a
+            href={NAVER_FORM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-2 rounded-2xl bg-gold-gradient px-8 py-4 text-base font-extrabold text-black shadow-gold transition duration-300 hover:-translate-y-0.5 hover:shadow-gold-soft"
+          >
+            이벤트 바로 신청
+            <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+          </a>
         </div>
       </div>
     </section>
@@ -644,6 +688,7 @@ function ConsultSection() {
                   href={NAVER_FORM_URL}
                   target="_blank"
                   rel="noopener noreferrer"
+
                   className="group inline-flex w-full items-center justify-center gap-3 rounded-2xl bg-gold-gradient px-6 py-5 text-lg font-extrabold text-black shadow-gold transition duration-300 hover:-translate-y-0.5 hover:shadow-gold-soft sm:w-auto sm:px-10"
                 >
                   <ExternalLink className="h-5 w-5" />
@@ -686,6 +731,7 @@ function StickyCTA() {
           href={NAVER_FORM_URL}
           target="_blank"
           rel="noopener noreferrer"
+
           className="shrink-0 rounded-full bg-gold-gradient px-4 py-3 text-sm font-black text-black shadow-gold-soft"
         >
           상담 신청
